@@ -3,6 +3,7 @@ import logic from './logic/index'
 import './App.css';
 import UserList from './components/UserList'
 import UserInfo from './components/UserInfo'
+import Search from './components/Search'
 
 class App extends Component {
   state = {
@@ -11,16 +12,21 @@ class App extends Component {
     selectedUser: {},
     err: {}
   }
+
   catchInput = e => {
+    this.state.input = e.target
     this.setState({
-      userGitHub: e.target.value
+      userGitHub: e.target.value   
     })
   }
+  
   catchOutput = e => {
     e.preventDefault()
+    this.state.selectedUser = {}
     logic.searchUsers(this.state.userGitHub)
-      .then(data => this.setState({
-        dataUsers: data
+    .then(data => this.setState({
+      dataUsers: data,
+      userGitHub: ""
       }))
   }
   showInfo = userLogin => {
@@ -33,10 +39,7 @@ class App extends Component {
     return (
       <div className="App">
         <header><h1>FindinGitHub</h1></header>
-        <form>
-          <input type="text" placeholder="Search github username" onChange={this.catchInput} />
-          <button onClick={this.catchOutput}>Search</button>
-        </form>
+          <Search input={this.catchInput} form={this.catchOutput} value={this.state.userGitHub}/>
         <main>
           <UserList listuser={this.state.dataUsers} show={this.showInfo} />
           <UserInfo infor={this.state.selectedUser}/>

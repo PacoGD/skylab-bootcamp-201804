@@ -81,20 +81,50 @@ main{
   color: #222;
   z-index: 10;
   font-size: 1.1em;
+  text-shadow: 0 0 10px white;
 }
 
 .right{
   min-width: 40vw;
 }
 
+.container-user{
+  position:fixed;
+  top: 50%;
+  min-width: 40vw;
+  transform: translateY(-50%);
+}
+
 .right img {
-  margin-top: 50px;
+  margin-top: 20px;
   height: 150px;
   width: 150px;
   border-radius: 50%;
+  border: 10px solid white;
+  background-color: white;
 }
 
 small{
   font-size:0.5em;
+  margin: 0;
 }
 
+.right p{
+  margin: -0.5em 0 0;
+}
+
+@media only screen and (max-width: 800px){
+  .container-user{
+    position:fixed;
+    top: 60%;
+    min-width: 40vw;
+    transform: translateY(-50%);
+  }
+  .right img {
+    margin-top: 50px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border:0;
+  }
+}
