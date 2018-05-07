@@ -28,7 +28,9 @@ const logic = {
                     headers: new Headers({ "content-Type": "application/json" })
                 })
                     .then(res => res.json())
-                    .then(res => { this.id = res.id; console.log(res); console.log(res.id); return res })
+                    .then(res => { 
+                        this.id = res.data.id; 
+                        return res })
             })
     },
 
@@ -46,7 +48,10 @@ const logic = {
                     headers: new Headers({ "content-Type": "application/json" })
                 })
                     .then(res => res.json())
-                    .then(res => { this.token = res.token; return res })
+                    .then(res => { 
+                        this.token = res.data.token; 
+                        this.id = res.data.id;
+                        return res })
             })
     },
 
@@ -57,14 +62,22 @@ const logic = {
             password
         }
         return Promise.resolve()
+        
             .then(() => {
+                console.log(this.id)
+                console.log(`${this.url}/user/${this.id}`)
                 return fetch(`${this.url}/user/${this.id}`, {
                     method: 'DELETE',
                     body: JSON.stringify(data),
-                    headers: new Headers({ "content-Type": "application/json", headers()})
+                    headers: new Headers({
+                        "content-Type": "application/json",
+                        "Authorization": `Bearer ${this.token}`
+                    })
                 })
                     .then(res => res.json())
-                    .then(res => { this.id = res.id; console.log(res); console.log(res.id); return res })
+                    .then(res => { 
+
+                        return res })
             })
     },
 
