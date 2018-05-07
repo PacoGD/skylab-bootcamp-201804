@@ -2,13 +2,13 @@
 
 const logic = {
     url: 'https://skylabcoders.herokuapp.com/api',
-    token: '',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZjA2MDJlZDE2YTA2MDAxNGQ3YTMyOCIsImlhdCI6MTUyNTcwMjkzMCwiZXhwIjoxNTI1NzA2NTMwfQ.BY404DwnM1ei2RdWdKD859zeROWgX6lJMshsK5U7sxU',
     username: '',
     password: '',
-    id: '',
+    id: '5af0602ed16a060014d7a328',
 
     headers() {
-        return { headers: { Authorization: `Bearer ${this.token}` } }
+        return { headers: { Authorization: `Bearer Token ${this.token}` } }
     },
 
     register(username, password) {
@@ -58,13 +58,15 @@ const logic = {
         }
         return Promise.resolve()
             .then(() => {
-                return fetch(`${this.url}/user/${this.id}`, {
+                return fetch(`${this.url}/user/5af0602ed16a060014d7a328`, {
                     method: 'DELETE',
                     body: JSON.stringify(data),
-                    headers: new Headers({ "content-Type": "application/json", headers()})
+                    headers: new Headers({ 
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZjA2MDJlZDE2YTA2MDAxNGQ3YTMyOCIsImlhdCI6MTUyNTcwMzM0MCwiZXhwIjoxNTI1NzA2OTQwfQ.lXsJI_3jLJf3dP7RNan4oFBDSWZY9wIDSZDaF4jVi6g`,
+                        "content-Type": "application/json"})
                 })
                     .then(res => res.json())
-                    .then(res => { this.id = res.id; console.log(res); console.log(res.id); return res })
+                    .then(res => { this.id = res.id; console.log(this.token); console.log(res.id); return res })
             })
     },
 
