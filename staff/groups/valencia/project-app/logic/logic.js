@@ -49,6 +49,7 @@ const logic = {
                 })
                     .then(res => res.json())
                     .then(res => { 
+                        console.log()
                         this.token = res.data.token; 
                         this.id = res.data.id;
                         return res })
