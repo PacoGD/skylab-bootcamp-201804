@@ -1,5 +1,8 @@
-import React, { Component, BrowserRouter, Link, Hash } from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+
+
 import Register from './components/Register'
 import Login from './components/Login'
 
@@ -17,8 +20,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+
         <header>
           <h1>I'M A HEADER</h1>
 
