@@ -19,6 +19,7 @@ const logic = {
         }
         return Promise.resolve()
             .then(() => {
+                
                 if (typeof password !== 'string') throw Error("Invalid password, it should be a string")
                 if (typeof username !== 'string') throw Error("Invalid username, it should be a string")
 
@@ -123,3 +124,4 @@ const logic = {
 
 }
 
+export default logic

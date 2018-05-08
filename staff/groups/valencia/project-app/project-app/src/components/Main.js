@@ -10,11 +10,11 @@ function Main(){
     return (
     <div className = "Main">
         <Switch>
-            <Route exact path = '/'component={Home}/>
+            <Route exact path = '/'component={Landing}/>
             <Route path = '/register'component={Register}/>
             <Route path = '/login'component={Login}/>
-            <Route path = '/landing'component={Landing}/>
             <Route path = '/profile'component={Profile}/>
+            <Route path = '/home'component={Home}/>
         </Switch>
     </div>
     )

@@ -28,16 +28,9 @@ const logic = {
                     headers: new Headers({ "content-Type": "application/json" })
                 })
                     .then(res => res.json())
-<<<<<<< HEAD
                     .then(res => { 
                         if (res.status === "OK") {this.id = res.data.id; }
                         return res })
-=======
-                    .then(res => {
-                        this.id = res.data.id;
-                        return res
-                    })
->>>>>>> feature/group-project-css-pacogd
             })
     },
 
@@ -55,7 +48,6 @@ const logic = {
                     headers: new Headers({ "content-Type": "application/json" })
                 })
                     .then(res => res.json())
-<<<<<<< HEAD
                     .then(res => { 
                         if(res.status === "OK"){
                             this.token = res.data.token; 
@@ -82,16 +74,14 @@ const logic = {
                     })
                 })
                     .then(res => res.json())
-                    .then(res => { 
+                    .then(res => {
+                        console.log(res)
                         return res })
             })
     },
 
-    retrieve(username, password) {
-        const data = {
-            username,
-            password
-        }
+    retrieve() {
+
         return Promise.resolve()
             .then(() => {
                 return fetch(`${this.url}/user/${this.id}`, {
@@ -103,48 +93,8 @@ const logic = {
                 })
                     .then(res => res.json())
                     .then(res => res)
-=======
-                    .then(res => {
-                        this.token = res.data.token;
-                        this.id = res.data.id;
-                        return res
-                    })
->>>>>>> feature/group-project-css-pacogd
             })
     },
-
-    // retrieve(username) {
-    //     return fetch(`${this.url}/user/${this.id}`, {
-    //         method: 'GET',
-    //         body: JSON.stringify(data),
-    //         headers: new Headers({
-    //             "content-Type": "application/json",
-    //             "Authorization": `Bearer ${this.token}`
-    //         })
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-
-    //             return res
-    //         })
-    // },
-    
-    // update (username, password) {
-    //     return fetch(`${this.url}/user/${this.id}`, {
-    //         method: 'GET',
-    //         body: JSON.stringify(data),
-    //         headers: new Headers({
-    //             "content-Type": "application/json",
-    //             "Authorization": `Bearer ${this.token}`
-    //         })
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-
-    //             return res
-    //         })
-    // },
-
 
     unregister(username, password) {
 
@@ -153,10 +103,7 @@ const logic = {
             password
         }
         return Promise.resolve()
-
             .then(() => {
-                console.log(this.id)
-                console.log(`${this.url}/user/${this.id}`)
                 return fetch(`${this.url}/user/${this.id}`, {
                     method: 'DELETE',
                     body: JSON.stringify(data),
@@ -166,18 +113,11 @@ const logic = {
                     })
                 })
                     .then(res => res.json())
-<<<<<<< HEAD
                     .then(res => { 
 
                         return res })
             })
     }
-=======
-                    .then(res => {
->>>>>>> feature/group-project-css-pacogd
 
-                        return res
-                    })
-            })
-    }
+
 }
