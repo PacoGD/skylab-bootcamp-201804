@@ -6,7 +6,8 @@ import logic from '../logic'
 function Register(props) {
     return (
         <div className="register">
-          <Link to="/Login">Login</Link>
+        <h1>I'm register</h1>
+          {/* <Link to="/Login">Login</Link>
 
             <form>
                 <input id="formtext" text="your username" type="text" placeholder="your username" onChange={props.register.username} />
@@ -14,7 +15,7 @@ function Register(props) {
                 <input id="formtext" text="your password" type="text" placeholder="your password" onChange={props.register.password} />
 
                 <button type='submit' id="button">Create Account</button>
-            </form>
+            </form> */}
         </div>
     )
 }

@@ -1,7 +1,12 @@
-import React, { Component, BrowserRouter, Link, Hash } from 'react';
+import React, { Component } from 'react';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
 import './App.css';
-import Register from './components/Register'
-import Login from './components/Login'
+// import Register from './components/Register'
+// import Login from './components/Login'
+import Main from './components/Main'
+
 
 class App extends Component {
 
@@ -11,24 +16,18 @@ class App extends Component {
     username: '',
     password: '',
     id: ''
-
   }
 
   render() {
     return (
       <div className="App">
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-        <header>
-          <h1>I'M A HEADER</h1>
 
-        </header>
-        <main>
-          <h2>WELCOME</h2>
-        </main>
-        <footer>
-          <h4>I am a footer</h4>
-        </footer>
+        <Header/>
+
+        <Main/>
+
+        <Footer />
+
       </div>
     );
   }
