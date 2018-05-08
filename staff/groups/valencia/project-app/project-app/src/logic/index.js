@@ -34,7 +34,6 @@ const logic = {
             })
     },
 
-
     login(username, password) {
         const data = {
             username,

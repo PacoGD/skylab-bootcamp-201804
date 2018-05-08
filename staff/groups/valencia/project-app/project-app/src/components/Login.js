@@ -27,8 +27,6 @@ class Login extends Component {
         e.preventDefault()
                 
         logic.login(this.state.user, this.state.password).then(this.props.history.push(`/home`))
-        
-
     }
     render() {
         const { user, password } = this.state

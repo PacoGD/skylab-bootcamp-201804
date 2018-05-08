@@ -34,25 +34,28 @@ class Profile extends Component {
                                 <label name="username">Username:</label>
                                 <span>{this.state.data.username}</span>
                             </div>
-                            {/* <div>
+                            <div>
 
-                            <label for="name">Name:</label>
-                            <span type="text" name="name" />
-                        </div>
-                        <div>
-                            <label for="email">Email:</label>
-                            <span type="text" name="email" />
-                        </div>
-                        <div>
-                            <label for="phone">Phone Number:</label>
-                            <span type="text" name="phone" />
-                        </div>
+                                <label for="name">Name:</label>
+                                <span type="text" name="name" />
+                            </div>
+                            <div>
+                                <label for="email">Email:</label>
+                                <span type="text" name="email" />
+                            </div>
+                            <div>
+                                <label for="phone">Phone Number:</label>
+                                <span type="text" name="phone" />
+                            </div>
 
-                       
-                        <div>
-                            <span type="button" id="register-button" value="REGISTER" />
-                            <span type="button" id="cancel" value="CANCEL" />
-                        </div> */}
+
+                           {/*  <div>
+                                <span type="button" id="register-button" value="REGISTER" />
+                                <span type="button" id="cancel" value="CANCEL" />
+                            </div> */}
+                            <div>
+                                <button>Delete Profile</button>
+                            </div>
                         </form>
                     </article>
 
