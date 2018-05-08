@@ -1,22 +1,47 @@
-import React from 'react';
+import React, { Component, Redirect } from 'react';
 import '../App.css';
 import App from '../App'
-import logic from '../logic'
+import logic from '../logic/index'
 
-function Login (props) {
-    return (
-        <div className="login">
-        <h1>I'm login</h1>
+
+class Login extends Component {
+    state = {
+        user: '',
+        password: '',
+        state: '',
+        token: ''
+    }
+    userName = (e) => {
+        const user = e.target.value
+        this.setState({ user })
+        console.log(user)
+    }
+    userPassword = (e) => {
+
+        const password = e.target.value
+        this.setState({ password })
+        console.log(password)
+    }
+    submit = (e) => {
+        e.preventDefault()
+                
+        logic.login(this.state.user, this.state.password).then(resp => {
+            if(resp.status === 'OK') <Redirect to="/profile" /> })
+
         
-              {/* <Link to="/register">Register</Link>
 
-            <input id="formtext" text="your username" type="text" placeholder="your username" onChange={props.login.username} />
-
-            <input id="formtext" text="your password" type="text" placeholder="your password" onChange={props.login.password} />
-
-            <button type='submit' id="button">Login</button> */}
-        </div>
-    )
+    }
+    render() {
+        const { user, password } = this.state
+        return <section>
+            <h2>Login</h2>
+            <form onSubmit={this.submit}>
+                <input type="text" onChange={this.userName} value={user} placeholder="User" />
+                <input type="password" onChange={this.userPassword} value={password} placeholder="Password" />
+                <button type="submit">Login</button>
+            </form>
+        </section>
+    }
 }
 
 export default Login
