@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import '../App.css';
 import { withRouter } from 'react-router-dom'
-// import App from '../App'
 import logic from '../logic/index'
 
 class Register extends Component {
@@ -12,6 +10,8 @@ class Register extends Component {
         _pass : "",
         mail : "",
         _mail : "",
+        exists : false,
+        register : false,
         data : {}
     }
     
@@ -29,24 +29,31 @@ class Register extends Component {
         if (pass !==  _pass) throw Error("Los passwords no son iguales")
         if (mail !==  _mail) throw Error("Los mails no son iguales")
 
-        logic.register(this.state.username, this.state.pass)
-            .then(this.props.history.push(`/login`))
+        logic.register(username, pass)
+            .then(res => {
+                if (res.status === "KO"){
+                    this.setState({exists : true}) 
+                } else {
+                    this.props.history.push(`/login`)
+                }
+            })   
     }
 
     render() {
-        const { username, pass, _pass, mail, _mail, data } = this.state
+        const { username, pass, _pass } = this.state
 
         return (
             <div className="register">
             <h1>Register</h1>
                 <form onSubmit={this.submit}>
-                    <input type="text" onChange={this.inputValues} name="username" value={username} placeholder="User name" />
+                    <input type="text" onChange={this.inputValues} name="username" value={username} placeholder="User name" autoComplete="off"/>
                     <input type="password" onChange={this.inputValues} name="pass" value={pass} placeholder="Password" />
                     <input type="password" onChange={this.inputValues} name="_pass" value={_pass} placeholder="Confirm your password" />
-                    {/* <input type="email" onChange={this.inputValues} name="mail" value={mail} placeholder="Your e-mail" />
-                    <input type="email" onChange={this.inputValues} name="_mail" value={_mail} placeholder="Confirm e-mail" /> */}
                     <button type="submit">Register</button>
                 </form>
+                {
+                   this.state.exists && <p>El usuario introducido ya existe.</p>
+                }
             </div>
         )
     }
