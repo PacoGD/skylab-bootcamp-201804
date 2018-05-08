@@ -1,18 +1,11 @@
 'use strict';
 
 describe('logic (project-app)', () => {
-    let originalTimeout
-
-    beforeEach(() => {
-        // originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL
-        // jasmine.DEFAULT_TIMEOUT_INTERVAL = 300
-    })
-
 
     describe('register', () => {
 
-        it('should "miaz", "password" register as new user', done => {
-            logic.register('miaz', 'password')
+        it('should "miaz", "pass" register as new user', done => {
+            logic.register('miaz', 'pass')
                 .then(resp => {
                     expect(resp).toBeDefined()
                     expect(resp.status).toBe('OK')
@@ -22,7 +15,7 @@ describe('logic (project-app)', () => {
                 .catch(err => expect(err).toBeUndefined())
         })
 
-        it('password empty should throw error', done => {
+        it('pass empty should throw error', done => {
             logic.register('tom', )
                 .catch(err => {
                     expect(err).toBeDefined()
@@ -75,12 +68,9 @@ describe('logic (project-app)', () => {
     })
 
     describe('login', () => {
-        // beforeEach(
-        //     logic.login('tom', 'password')
-        // )
 
         it('should "miaz", "password" login return token and id', done => {
-            logic.login('miaz', 'password')
+            logic.login('miaz', 'pass')
                 .then(resp => {
                     expect(resp).toBeDefined()
                     expect(resp.id).not.toBe('')
@@ -114,14 +104,14 @@ describe('logic (project-app)', () => {
 
     describe('update', () => {
 
-        it('should "miaz", "password", "age", "unknow" add age and with retrieve get age', done => {
-            logic.update('miaz', 'password', 'age', 'unknow')
+        it('should "miaz", "pass", "age", "unknow" add age and with retrieve get age', done => {
+            logic.update('miaz', 'pass', 'age', 'unknow')
                 .then(resp => {
                     expect(resp).toBeDefined()
                     expect(resp.status).toBe('OK')
                     
                     done()
-                }).then(() => logic.retrieve('miaz', 'password'))
+                }).then(() => logic.retrieve('miaz', 'pass'))
                     .then(resp => {
                     expect(resp.data.age).toBe('unknow')
                     })
@@ -132,9 +122,10 @@ describe('logic (project-app)', () => {
 
     describe('retrieve', () => {
 
-        it('should "miaz", "password" return user information', done => {
-            logic.retrieve('miaz', 'password')
+        it('should  return user information', done => {
+            logic.retrieve()
                 .then(resp => {
+                    
                     expect(resp).toBeDefined()
                     expect(resp.status).toBe('OK')
                     expect(resp.data.username).toBe('miaz')
@@ -159,8 +150,8 @@ describe('logic (project-app)', () => {
                 .catch(err => expect(err).toBeUndefined())
         })
 
-        it('should "a23sd34fg56h7kij", "password" throw an error if user is invalid', done => {
-            logic.unregister("a23sd34fg56h7kij", 'password')
+        it('should "a23sd34fg56h7kij", "pass" throw an error if user is invalid', done => {
+            logic.unregister("a23sd34fg56h7kij", 'pass')
                 .then(resp => {
                     expect(resp.status).toBe("KO")
                     expect(resp.error).toBe("username and/or password wrong")
@@ -171,8 +162,8 @@ describe('logic (project-app)', () => {
         })
     
 
-        it('should "miaz", "password" delete the user', done => {
-            logic.unregister('miaz', 'password')
+        it('should "miaz", "pass" delete the user', done => {
+            logic.unregister('miaz', 'pass')
                 .then(resp => {
                     expect(resp).toBeDefined()
                     expect(resp.status).toBe('OK')
@@ -182,5 +173,4 @@ describe('logic (project-app)', () => {
                 .catch(err => expect(err).toBeUndefined())
         })
     })
-
 })

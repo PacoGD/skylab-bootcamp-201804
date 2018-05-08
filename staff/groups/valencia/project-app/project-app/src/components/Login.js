@@ -1,5 +1,6 @@
-import React, { Component, Redirect } from 'react';
+import React, { Component } from 'react';
 import '../App.css';
+import {withRouter} from 'react-router-dom'
 import App from '../App'
 import logic from '../logic/index'
 
@@ -25,9 +26,7 @@ class Login extends Component {
     submit = (e) => {
         e.preventDefault()
                 
-        logic.login(this.state.user, this.state.password).then(resp => {
-            if(resp.status === 'OK') <Redirect to="/profile" /> })
-
+        logic.login(this.state.user, this.state.password).then(this.props.history.push(`/home`))
         
 
     }
@@ -44,4 +43,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default withRouter(Login)

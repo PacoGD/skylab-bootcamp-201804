@@ -13,8 +13,8 @@ function Main(){
             <Route exact path = '/'component={Landing}/>
             <Route path = '/register'component={Register}/>
             <Route path = '/login'component={Login}/>
-            <Route path = '/home'component={Home}/>
             <Route path = '/profile'component={Profile}/>
+            <Route path = '/home'component={Home}/>
         </Switch>
     </div>
     )

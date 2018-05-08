@@ -3,14 +3,13 @@ import '../App.css';
 import App from '../App'
 import logic from '../logic'
 
-class Profile extends Component {
+class Profile extends Components {
     state = {
         data: {}
     }
 
-    componentWillMount() {
+    componentDidMount() {
         logic.retrieve()
-            .then(res => res.data)
             .then(data => {
                 this.setState({
                     data
@@ -31,7 +30,7 @@ class Profile extends Component {
                     </figure> */}
                         <form>
                             <div>
-                                <label name="username">Username:</label>
+                                <label for="username">Username:</label>
                                 <span>{this.state.data.username}</span>
                             </div>
                             {/* <div>

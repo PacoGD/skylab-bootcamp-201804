@@ -74,16 +74,14 @@ const logic = {
                     })
                 })
                     .then(res => res.json())
-                    .then(res => { 
+                    .then(res => {
+                        console.log(res)
                         return res })
             })
     },
 
-    retrieve(username, password) {
-        const data = {
-            username,
-            password
-        }
+    retrieve() {
+
         return Promise.resolve()
             .then(() => {
                 return fetch(`${this.url}/user/${this.id}`, {

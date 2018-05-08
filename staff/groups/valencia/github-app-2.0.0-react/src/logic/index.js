@@ -2,7 +2,7 @@
 
 const logic = {
     url: 'https://api.github.com',
-    token: 'TOKEN',
+    token: "8c31673426a0dceffe7d722bf03584903ed72848",
 
     headers() {
         return { headers: { Authorization: `Bearer ${this.token}` } }
@@ -20,3 +20,4 @@ const logic = {
     }
 }
 
+export default logic;
