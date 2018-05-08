@@ -10,7 +10,7 @@ function UserList(props) {
                     props.show(data.login)
                 }}>
                     <img src={data.avatar_url} />
-                    {data.login}
+                    <h6>{data.login}</h6>
                 </div>)}
         </section>
 }

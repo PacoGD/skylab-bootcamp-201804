@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import Main from './components/main'
 import logic from './logic/index'
 import './App.css';
 import UserList from './components/UserList'
 import UserInfo from './components/UserInfo'
+import Search from './components/Search'
 
 class App extends Component {
   state = {
@@ -12,18 +12,21 @@ class App extends Component {
     selectedUser: {},
     err: {}
   }
-  catchInput = e => {
-    this.setState({
-      userGitHub: e.target.value
 
+  catchInput = e => {
+    this.state.input = e.target
+    this.setState({
+      userGitHub: e.target.value   
     })
   }
+  
   catchOutput = e => {
     e.preventDefault()
+    this.state.selectedUser = {}
     logic.searchUsers(this.state.userGitHub)
-      .then(data => this.setState({
-        dataUsers: data,
-        
+    .then(data => this.setState({
+      dataUsers: data,
+      userGitHub: ""
       }))
   }
   showInfo = userLogin => {
@@ -35,11 +38,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>Hola soy un header</header>
-        <form>
-          <input type="text" placeholder="Search github username" onChange={this.catchInput} />
-          <button onClick={this.catchOutput}>Search</button>
-        </form>
+        <header><h1>FindinGitHub</h1></header>
+          <Search input={this.catchInput} form={this.catchOutput} value={this.state.userGitHub}/>
         <main>
           <UserList listuser={this.state.dataUsers} show={this.showInfo} />
           <UserInfo infor={this.state.selectedUser}/>
