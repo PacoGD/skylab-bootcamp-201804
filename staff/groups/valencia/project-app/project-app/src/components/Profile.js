@@ -5,7 +5,10 @@ import logic from '../logic'
 
 class Profile extends Component {
     state = {
-        data: {}
+        data: {},
+        name: "",
+        email: "",
+        country: ""
     }
 
     componentWillMount() {
@@ -18,6 +21,26 @@ class Profile extends Component {
             })
     }
 
+    submit = (e) => {
+        e.preventDefault()
+        this.props.history.push(`/unregister`)
+    }
+    submitUpdate = (e) => {
+        e.preventDefault()
+        console.log("Hola que hase")
+    }
+    inputName = (e) => {        
+        this.setState({ name: e.target.value })
+        console.log(this.state.name)
+    }
+    inputEmail = (e) => {        
+        this.setState({ email: e.target.value })
+        console.log(this.state.email)
+    }
+    inputCountry = (e) => {        
+        this.setState({ country: e.target.value })
+        console.log(this.state.country)
+    }
     render() {
         return (
             <div className="Profile">
@@ -29,31 +52,20 @@ class Profile extends Component {
                         <p>Upload Picture</p>
                         <input type="file" id="load_file" />
                     </figure> */}
-                        <form>
-                            <div>
-                                <label name="username">Username:</label>
-                                <span>{this.state.data.username}</span>
-                            </div>
-                            {/* <div>
-                            <label for="name">Name:</label>
-                            <span type="text" name="name" />
-                        </div>
-                        <div>
-                            <label for="email">Email:</label>
-                            <span type="text" name="email" />
-                        </div>
-                        <div>
-                            <label for="phone">Phone Number:</label>
-                            <span type="text" name="phone" />
-                        </div>
-                       
-                        <div>
-                            <span type="button" id="register-button" value="REGISTER" />
-                            <span type="button" id="cancel" value="CANCEL" />
-                        </div> */}
-                        </form>
-                    </article>
 
+                        <div>
+                            <label name="username">Username:</label>
+                            <span>{this.state.data.username}</span>
+                        </div>
+                        <form onSubmit={this.submitUpdate}>
+                            <input type="text" placeholder="name" value={this.state.name} id="name" onChange={this.inputName}/>
+                            <input type="text" placeholder="email" value={this.state.email} id="email"onChange={this.inputEmail}/>
+                            <input type="text" placeholder="country" value={this.state.country} id="country" onChange={this.inputCountry}/>
+                            <button>Update Profile</button>
+                        </form>
+                        <button onClick={this.submit}>Delete Profile</button>
+
+                    </article>
                 </section>
             </div >
         )
@@ -61,3 +73,4 @@ class Profile extends Component {
 }
 
 export default Profile
+

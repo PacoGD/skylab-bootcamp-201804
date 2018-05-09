@@ -5,7 +5,7 @@ import App from '../App'
 import logic from '../logic/index'
 
 
-class Login extends Component {
+class Unregister extends Component {
     state = {
         user: '',
         password: '',
@@ -15,23 +15,21 @@ class Login extends Component {
     userName = (e) => {
         const user = e.target.value
         this.setState({ user })
-       
     }
     userPassword = (e) => {
 
         const password = e.target.value
         this.setState({ password })
-        
     }
     submit = (e) => {
         e.preventDefault()
                 
-        logic.login(this.state.user, this.state.password).then(this.props.history.push(`/home`))
+        logic.unregister(this.state.user, this.state.password).then(alert("See you soon")).then(this.props.history.push(`/home`))
     }
     render() {
         const { user, password } = this.state
         return <section>
-            <h2>Login</h2>
+            <h2>Unregister</h2>
             <form onSubmit={this.submit}>
                 <input type="text" onChange={this.userName} value={user} placeholder="User" />
                 <input type="password" onChange={this.userPassword} value={password} placeholder="Password" />
@@ -41,4 +39,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login)
+export default withRouter(Unregister)
