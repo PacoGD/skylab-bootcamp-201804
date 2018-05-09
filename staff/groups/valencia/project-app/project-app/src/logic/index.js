@@ -54,14 +54,14 @@ const logic = {
             })
     },
 
-    update(username, password, property, value) {
-        let data = {
-            username,
-            password
-        }
-        data[property] = value
+    update(data) {
+        
         return Promise.resolve()
             .then(() => {
+                if (typeof data === 'object' && !(data instanceof Array)) throw Error("invalid data object")
+                
+                if(!(data.hasOwnProperty('username')) || !(data.hasOwnProperty('password'))) throw Error("data needs username and password")
+
                 return fetch(`${this.url}/user/${this.id}`, {
                     method: 'PUT',
                     body: JSON.stringify(data),
