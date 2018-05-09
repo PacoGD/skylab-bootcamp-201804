@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // import App from '../App'
 import logic from '../logic'
 import Unregister from './Unregister'
+import Xtorage from './Xtorage';
 
 class Profile extends Component {
     state = {
@@ -13,13 +14,17 @@ class Profile extends Component {
     }
 
     componentWillMount() {
-        logic.retrieve()
+        if(Xtorage.local.get('user')){
+            logic.token=Xtorage.local.get('user').token
+            logic.id = Xtorage.local.get('user').id
+            logic.retrieve()
             .then(res => res.data)
             .then(data => {
                 this.setState({
                     data
-                })
-            })
+        })
+        })
+        }
     }
 
     submit = (e) => {
@@ -41,6 +46,10 @@ class Profile extends Component {
     inputCountry = (e) => {        
         this.setState({ country: e.target.value })
         console.log(this.state.country)
+    }
+    _handleUnlog = (e) => {
+        Xtorage.local.remove('user')
+
     }
     render() {
         return (
@@ -65,6 +74,7 @@ class Profile extends Component {
                             <button>Update Profile</button>
                         </form>
                         <button onClick={this.submit}>Delete Profile</button>
+                        <button onClick={this._handleUnlog}>Unlog</button>
 
                     </article>
                 </section>
