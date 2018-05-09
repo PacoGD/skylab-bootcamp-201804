@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import logic from '../logic/index'
+import logic from '../logic'
+// import SweetAlert from 'sweetalert-react';
 
 class Register extends Component {
     

@@ -1,21 +1,25 @@
 import React from 'react';
 // import '../App.css';
 // import App from '../App'
-// import logic from '../logic'
+import { withRouter } from 'react-router-dom'
+import logic from '../logic'
 
 function Home (props) {
+    
+
     return (
         <div className="home">
-        <h1>I'm home</h1>
-              {/* <Link to="/register">Register</Link>
-
-            <input id="formtext" text="your username" type="text" placeholder="your username" onChange={props.login.username} />
-
-            <input id="formtext" text="your password" type="text" placeholder="your password" onChange={props.login.password} />
-
-            <button type='submit' id="button">Login</button> */}
+            {(logic.token === '')?
+            (
+                <div>
+                    <p>You need to log in.</p>
+                    <button onClick={(e) => { e.preventDefault(); props.history.push(`/login`)}}> Login </button>
+                </div>
+            ):(
+                <h1>I'm home</h1>
+            )}        
         </div>
     )
 }
 
-export default Home
+export default withRouter(Home)

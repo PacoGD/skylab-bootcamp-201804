@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import {withRouter} from 'react-router-dom'
 // import App from '../App'
-import logic from '../logic/index'
+import logic from '../logic'
 
 
 class Login extends Component {
@@ -24,7 +24,9 @@ class Login extends Component {
     submit = (e) => {
         e.preventDefault()
                 
-        logic.login(this.state.user, this.state.password).then(this.props.history.push(`/profile`))
+        logic.login(this.state.user, this.state.password)
+        .then(res => res)
+        .then(this.props.history.push(`/home`))
         
 
     }
