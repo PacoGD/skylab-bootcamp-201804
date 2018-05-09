@@ -19,7 +19,6 @@ const logic = {
         }
         return Promise.resolve()
             .then(() => {
-                
                 if (typeof password !== 'string') throw Error("Invalid password, it should be a string")
                 if (typeof username !== 'string') throw Error("Invalid username, it should be a string")
 
@@ -75,16 +74,14 @@ const logic = {
                     })
                 })
                     .then(res => res.json())
-                    .then(res => { 
+                    .then(res => {
+                        console.log(res)
                         return res })
             })
     },
 
-    retrieve(username, password) {
-        const data = {
-            username,
-            password
-        }
+    retrieve() {
+
         return Promise.resolve()
             .then(() => {
                 return fetch(`${this.url}/user/${this.id}`, {
@@ -96,6 +93,7 @@ const logic = {
                 })
                     .then(res => res.json())
                     .then(res => res)
+                    
             })
     },
 
@@ -125,4 +123,3 @@ const logic = {
 }
 export default logic
 
-export default logic
