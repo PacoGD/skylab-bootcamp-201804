@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import logic from '../logic'
+// import logic from '../logic'
 import Xtorage from './Xtorage';
 
 function Header() {
