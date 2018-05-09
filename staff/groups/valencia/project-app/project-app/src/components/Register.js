@@ -33,15 +33,6 @@ class Register extends Component {
         let error = false
         let successMsg = '<p>Registered Successful!</p>'
 
-        // logic.register(username, pass)
-        //     .then(res => {
-        //         if (res.status === "KO"){
-        //             this.setState({exists : true}) 
-        //         } else {
-        //             this.props.history.push(`/login`)
-        //         }
-        //     }) 
-
         if (pass !== _pass || mail !== _mail) {
             error = true;
             msg += '<p>Something went wrong!</p>'
