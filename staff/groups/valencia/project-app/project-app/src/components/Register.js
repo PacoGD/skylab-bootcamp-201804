@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import logic from '../logic'
-// import SweetAlert from 'sweetalert-react';
+// import App from '../App'
+import logic from '../logic/index'
+import 'animate.css'
+import swal from 'sweetalert2'
 
 class Register extends Component {
     
@@ -27,23 +29,43 @@ class Register extends Component {
         e.preventDefault()
         const { username, pass, _pass, mail, _mail} = this.state
 
-        if (pass !==  _pass) throw Error("Los passwords no son iguales")
-        if (mail !==  _mail) throw Error("Los mails no son iguales")
+        let msg = ''
+        let error = false
 
-        logic.register(username, pass)
-            .then(res => {
-                if (res.status === "KO"){
-                    this.setState({exists : true}) 
-                } else {
-                    this.props.history.push(`/login`)
-                }
-            })   
+        // logic.register(username, pass)
+        //     .then(res => {
+        //         if (res.status === "KO"){
+        //             this.setState({exists : true}) 
+        //         } else {
+        //             this.props.history.push(`/login`)
+        //         }
+        //     }) 
+
+        if (pass !==  _pass) {
+            error = true; 
+            msg += '<p>Something went wrong...</p>'
+        }
+
+        if(error) {
+            swal({
+                type: 'error',
+                title: 'error',
+                html: msg,
+                animation: false,
+                customClass: 'animated flipInX'
+            })
+        } else {
+            if (mail !==  _mail) throw Error("Los mails no son iguales")
+            
+            logic.register(this.state.username, this.state.pass)
+            .then(this.props.history.push(`/login`))
+        }
+        
     }
-
-    render() {
-        const { username, pass, _pass } = this.state
-
-        return (
+        render() {
+            const { username, pass, _pass, mail, _mail, data } = this.state
+            
+            return (
             <div className="register">
             <h1>Register</h1>
                 <form onSubmit={this.submit}>

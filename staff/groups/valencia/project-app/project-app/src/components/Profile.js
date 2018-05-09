@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import '../App.css';
 // import App from '../App'
 import logic from '../logic'
+import Unregister from './Unregister'
 
 class Profile extends Component {
     state = {

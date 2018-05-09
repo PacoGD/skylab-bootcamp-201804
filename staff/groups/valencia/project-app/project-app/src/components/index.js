@@ -1,3 +1,5 @@
+'use strict';
+
 const logic = {
     url: 'https://skylabcoders.herokuapp.com/api',
     token: '',
@@ -17,6 +19,7 @@ const logic = {
         }
         return Promise.resolve()
             .then(() => {
+                
                 if (typeof password !== 'string') throw Error("Invalid password, it should be a string")
                 if (typeof username !== 'string') throw Error("Invalid username, it should be a string")
 
@@ -31,6 +34,7 @@ const logic = {
                         return res })
             })
     },
+
 
     login(username, password) {
         const data = {
@@ -71,13 +75,16 @@ const logic = {
                     })
                 })
                     .then(res => res.json())
-                    .then(res => {
-                        console.log(res)
+                    .then(res => { 
                         return res })
             })
     },
 
-    retrieve() {
+    retrieve(username, password) {
+        const data = {
+            username,
+            password
+        }
         return Promise.resolve()
             .then(() => {
                 return fetch(`${this.url}/user/${this.id}`, {
@@ -89,7 +96,6 @@ const logic = {
                 })
                     .then(res => res.json())
                     .then(res => res)
-                    
             })
     },
 
@@ -119,3 +125,4 @@ const logic = {
 }
 export default logic
 
+export default logic

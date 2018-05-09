@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import App from '../App'
 import logic from '../logic/index'
+import Xtorage from './Xtorage'
 
 
 class Login extends Component {
@@ -12,6 +13,8 @@ class Login extends Component {
         state: '',
         token: ''
     }
+
+
     userName = (e) => {
         const user = e.target.value
         this.setState({ user })
@@ -25,8 +28,13 @@ class Login extends Component {
     }
     submit = (e) => {
         e.preventDefault()
-                
-        logic.login(this.state.user, this.state.password).then(this.props.history.push(`/home`))
+
+
+        logic.login(this.state.user, this.state.password)
+            .then(res =>
+                Xtorage.local.set('user', { id: res.data.id, token: res.data.token })
+            )
+            .then(this.props.history.push(`/home`))
     }
     render() {
         const { user, password } = this.state
