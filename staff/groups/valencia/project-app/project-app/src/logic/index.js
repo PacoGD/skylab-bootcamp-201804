@@ -58,7 +58,7 @@ const logic = {
         
         return Promise.resolve()
             .then(() => {
-                if (typeof data === 'object' && !(data instanceof Array)) throw Error("invalid data object")
+                if (typeof data !== 'object' || data instanceof Array) throw Error("invalid data object")
                 
                 if(!(data.hasOwnProperty('username')) || !(data.hasOwnProperty('password'))) throw Error("data needs username and password")
 

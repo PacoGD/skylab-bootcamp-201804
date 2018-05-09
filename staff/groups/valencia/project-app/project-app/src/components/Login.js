@@ -31,10 +31,26 @@ class Login extends Component {
 
 
         logic.login(this.state.user, this.state.password)
+            .then(res => {
+                if (res.status === "KO") {
+                    //ERROOOOOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRR
+                    throw Error("KO") //BORRALO
+                    
+                } 
+                return res
+            })
             .then(res =>
                 Xtorage.local.set('user', { id: res.data.id, token: res.data.token })
+                
             )
-            .then(this.props.history.push(`/home`))
+            .then(this.bucle)
+            .catch(error => {
+                this.props.history.go(0)
+            })
+    }
+
+    bucle = () => {
+        (Xtorage.local.get('user').token) ? this.props.history.push(`/home`) : this.bucle
     }
 
     componentDidMount() {
@@ -57,8 +73,8 @@ class Login extends Component {
         return <div className="login">
             <h1>Login</h1>
             <form onSubmit={this.submit}>
-                <input type="text" onChange={this.userName} value={user} placeholder="User" />
-                <input type="password" onChange={this.userPassword} value={password} placeholder="Password" />
+                <input type="text" onChange={this.userName} value={user} placeholder="User" autocomplete="off"/>
+                <input type="password" onChange={this.userPassword} value={password} placeholder="Password" autocomplete="off"/>
                 <button type="submit">Login</button>
             </form>
         </div>

@@ -8,21 +8,35 @@ import Xtorage from './Xtorage';
 class Profile extends Component {
     state = {
         data: {},
+        username: "",
         name: "",
         country: "",
         email: ""
     }
 
-    componentWillMount() {
+    componentDidMount() {
         if (Xtorage.local.get('user')) {
             logic.token = Xtorage.local.get('user').token
             logic.id = Xtorage.local.get('user').id
             logic.retrieve()
-                .then(res => res.data)
+                .then(res => {
+                    if (res.status === "KO") {
+                        Xtorage.local.remove('user')
+                        throw Error("Time expired and you should log in again")
+                    }
+                    return res.data})
                 .then(data => {
                     this.setState({
-                        data
-                    })
+                        data,
+                        username: data.username,
+                        name : data.name,
+                        country : data.country,
+                        email : data.email
+                    }) 
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.props.history.push(`/login`)
                 })
         }
     }
@@ -48,7 +62,7 @@ class Profile extends Component {
         const enterPassword = prompt('Introduce password to update')
         let data = {
             password: enterPassword,
-            username: this.state.data.username,
+            username: this.state.username,
             name: this.state.name,
             country: this.state.country,
             email: this.state.email
@@ -73,17 +87,31 @@ class Profile extends Component {
                         </figure> */}
 
                         <div>
-                            <label name="username">Username:</label>
-                            {/* <span>{this.state.data.username}</span> */}
+                            {/* <div className="half-input">Username:</div> */}
                         </div>
                         <form onSubmit={this.submitUpdate}>
-                            <input type="text" placeholder="name" value={this.state.name} id="name" onChange={this.inputName} />
-                            <input type="email" placeholder="email" value={this.state.email} id="email" onChange={this.inputEmail} />
-                            <input type="text" placeholder="country" value={this.state.country} id="country" onChange={this.inputCountry} />
-                            <button>Update</button>
+                            <div className="register-div">
+                                <div id="username-fake-input">{this.state.data.username} </div>
+                                <label htmlFor="username" className="static-value">Username </label>
+                            </div>
+                            <div className="register-div">
+                                <input type="text" onChange={this.inputName} value={this.state.name} id="name" placeholder="name" autoComplete="off"/>
+                                <label htmlFor="name" className="static-value">Name </label>
+                            </div>
+                            <div className="register-div">
+                                <input type="email" onChange={this.inputEmail} value={this.state.email} id="email" placeholder="email" autoComplete="off"/>
+                                <label htmlFor="email" className="static-value">E-mail </label>
+                            </div>
+                            <div className="register-div">
+                                <input type="text" onChange={this.inputCountry} value={this.state.country} id="country" placeholder="country"  autoComplete="off"/>
+                                <label htmlFor="country" className="static-value">Country </label>
+                            </div>
+                            <div className="register-buttons">
+                                <button>Update</button>
+                                <button onClick={this.submit}>Delete Profile</button>
+                                <button onClick={this._handleUnlog}>Log out</button>
+                            </div>
                         </form>
-                        <button onClick={this.submit}>Delete Profile</button>
-                        <button onClick={this._handleUnlog}>Log out</button>
 
                     </article>
                 </section>
