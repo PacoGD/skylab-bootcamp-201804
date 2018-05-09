@@ -2,7 +2,7 @@ import React from 'react';
 // import '../App.css';
 // import App from '../App'
 import { withRouter } from 'react-router-dom'
-import logic from '../logic'
+// import logic from '../logic'
 import Xtorage from './Xtorage';
 
 function Home (props) {

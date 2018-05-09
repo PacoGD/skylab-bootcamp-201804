@@ -27,7 +27,7 @@ class Register extends Component {
 
     submit = (e) => {
         e.preventDefault()
-        const { username, pass, _pass, mail, _mail } = this.state
+        const { pass, _pass } = this.state
 
         let msg = ''
         let error = false
@@ -42,7 +42,7 @@ class Register extends Component {
         //         }
         //     }) 
 
-        if (pass !== _pass || mail !== _mail) {
+        if (pass !== _pass) {
             error = true;
             msg += '<p>Something went wrong!</p>'
         }
@@ -71,7 +71,7 @@ class Register extends Component {
     }
 
     render() {
-        const { username, pass, _pass, mail, _mail, data } = this.state
+        const { username, pass, _pass } = this.state
 
         return (
             <div className="register">

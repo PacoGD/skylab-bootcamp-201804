@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import '../App.css';
 // import App from '../App'
 import logic from '../logic'
-import Unregister from './Unregister'
+// import Unregister from './Unregister'
 import Xtorage from './Xtorage';
 
 class Profile extends Component {
@@ -14,16 +14,16 @@ class Profile extends Component {
     }
 
     componentWillMount() {
-        if(Xtorage.local.get('user')){
-            logic.token=Xtorage.local.get('user').token
+        if (Xtorage.local.get('user')) {
+            logic.token = Xtorage.local.get('user').token
             logic.id = Xtorage.local.get('user').id
             logic.retrieve()
-            .then(res => res.data)
-            .then(data => {
-                this.setState({
-                    data
-        })
-        })
+                .then(res => res.data)
+                .then(data => {
+                    this.setState({
+                        data
+                    })
+                })
         }
     }
 
@@ -47,17 +47,18 @@ class Profile extends Component {
         e.preventDefault()
         const enterPassword = prompt('Introduce password to update')
         let data = {
-            password : enterPassword,
-            username : this.state.data.username,
-            name : this.state.name,
+            password: enterPassword,
+            username: this.state.data.username,
+            name: this.state.name,
             country: this.state.country,
-            email: this.state.email           
+            email: this.state.email
         }
         logic.update(data)
     }
     _handleUnlog = (e) => {
+        e.preventDefault()
         Xtorage.local.remove('user')
-
+        this.props.history.push(`/login`)
     }
     render() {
         return (
@@ -73,7 +74,7 @@ class Profile extends Component {
 
                         <div>
                             <label name="username">Username:</label>
-                            <span>{this.state.data.username}</span>
+                            {/* <span>{this.state.data.username}</span> */}
                         </div>
                         <form onSubmit={this.submitUpdate}>
                             <input type="text" placeholder="name" value={this.state.name} id="name" onChange={this.inputName} />
@@ -82,7 +83,7 @@ class Profile extends Component {
                             <button>Update</button>
                         </form>
                         <button onClick={this.submit}>Delete Profile</button>
-                        <button onClick={this._handleUnlog}>Unlog</button>
+                        <button onClick={this._handleUnlog}>Log out</button>
 
                     </article>
                 </section>
