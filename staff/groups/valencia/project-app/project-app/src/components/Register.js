@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 // import App from '../App'
 import logic from '../logic/index'
-import 'animate.css'
+// import 'animate.css'
 import swal from 'sweetalert2'
 
 class Register extends Component {
