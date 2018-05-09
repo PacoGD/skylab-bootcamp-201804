@@ -18,13 +18,13 @@ class Login extends Component {
     userName = (e) => {
         const user = e.target.value
         this.setState({ user })
-       
+
     }
     userPassword = (e) => {
 
         const password = e.target.value
         this.setState({ password })
-        
+
     }
     submit = (e) => {
         e.preventDefault()
@@ -36,6 +36,22 @@ class Login extends Component {
             )
             .then(this.props.history.push(`/home`))
     }
+
+    componentDidMount() {
+        if (Xtorage.local.get('user')) {
+            logic.token = Xtorage.local.get('user').token
+            logic.id = Xtorage.local.get('user').id
+            logic.retrieve()
+                .then(res => res.data)
+                .then(data => {
+                    this.setState({
+                        data
+                    })
+                }).then(alert('you already logged'))
+                .then(this.props.history.push(`/home`))
+        }
+    }
+
     render() {
         const { user, password } = this.state
         return <section>
