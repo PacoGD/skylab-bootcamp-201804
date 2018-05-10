@@ -11,7 +11,8 @@ class Profile extends Component {
         username: "",
         name: "",
         country: "",
-        email: ""
+        email: "",
+        url: "https://robohash.org"
     }
 
     componentDidMount() {
@@ -24,21 +25,22 @@ class Profile extends Component {
                         Xtorage.local.remove('user')
                         throw Error("Time expired and you should log in again")
                     }
-                    return res.data})
+                    return res.data
+                })
                 .then(data => {
                     this.setState({
                         data,
                         username: data.username,
-                        name : data.name,
-                        country : data.country,
-                        email : data.email
-                    }) 
+                        name: data.name,
+                        country: data.country,
+                        email: data.email
+                    })
                 })
                 .catch(err => {
                     console.log(err)
                     this.props.history.push(`/login`)
                 })
-        } else  this.props.history.push(`/login`)
+        } else this.props.history.push(`/login`)
     }
 
     submit = (e) => {
@@ -90,20 +92,22 @@ class Profile extends Component {
                             {/* <div className="half-input">Username:</div> */}
                         </div>
                         <form onSubmit={this.submitUpdate}>
+                            <img type="image" id="profile_pic" src={`${this.state.url}/${this.state.username}`}
+                                title={`${this.state.username}`} />
                             <div className="register-div">
-                                <input type="text" value={this.state.username} placeholder="username" id="username" readOnly/>
+                                <input type="text" value={this.state.username} placeholder="username" id="username" readOnly />
                                 <label htmlFor="username" className="static-value">Username </label>
                             </div>
                             <div className="register-div">
-                                <input type="text" onChange={this.inputName} value={this.state.name} id="name" placeholder="name" autoComplete="off"/>
+                                <input type="text" onChange={this.inputName} value={this.state.name} id="name" placeholder="name" autoComplete="off" />
                                 <label htmlFor="name" className="static-value">Name </label>
                             </div>
                             <div className="register-div">
-                                <input type="email" onChange={this.inputEmail} value={this.state.email} id="email" placeholder="email" autoComplete="off"/>
+                                <input type="email" onChange={this.inputEmail} value={this.state.email} id="email" placeholder="email" autoComplete="off" />
                                 <label htmlFor="email" className="static-value">E-mail </label>
                             </div>
                             <div className="register-div">
-                                <input type="text" onChange={this.inputCountry} value={this.state.country} id="country" placeholder="country"  autoComplete="off"/>
+                                <input type="text" onChange={this.inputCountry} value={this.state.country} id="country" placeholder="country" autoComplete="off" />
                                 <label htmlFor="country" className="static-value">Country </label>
                             </div>
                             <div className="register-buttons">
