@@ -4,78 +4,107 @@ import { withRouter } from 'react-router-dom'
 import logic from '../logic/index'
 // import 'animate.css'
 import swal from 'sweetalert2'
+import Xtorage from './Xtorage';
 
 class Register extends Component {
-    
+
     state = {
-        username : "",
-        pass : "",
-        _pass : "",
-        mail : "",
-        _mail : "",
-        exists : false,
-        register : false,
-        data : {}
+        username: "",
+        pass: "",
+        _pass: "",
+        mail: "",
+        _mail: "",
+        exists: false,
+        register: false,
+        data: {}
     }
-    
+
 
     inputValues = (e) => {
         let prop = e.target.name
         this.setState({ [prop]: e.target.value })
     }
 
+    componentDidMount() {
+        if (Xtorage.local.get('user')) {
+            swal({
+                type: 'error',
+                title: 'Hey!',
+                html: '<p>You are already registered!</p>',
+                animation: true,
+                customClass: 'animated flipInX'
+            })
+            
+            this.props.history.push(`/home`)
+        }
+    }
 
     submit = (e) => {
         e.preventDefault()
-        const { username, pass, _pass, mail, _mail} = this.state
+        const { pass, _pass } = this.state
 
         let msg = ''
         let error = false
+        let successMsg = '<p>Registered Successful!</p>'
 
-        // logic.register(username, pass)
-        //     .then(res => {
-        //         if (res.status === "KO"){
-        //             this.setState({exists : true}) 
-        //         } else {
-        //             this.props.history.push(`/login`)
-        //         }
-        //     }) 
-
-        if (pass !==  _pass) {
-            error = true; 
-            msg += '<p>Something went wrong...</p>'
+        if (pass !== _pass) {
+            error = true;
+            msg += '<p>Wrong password!</p>'
         }
 
-        if(error) {
+        if (error) {
             swal({
                 type: 'error',
-                title: 'error',
+                title: 'Oops... ',
                 html: msg,
-                animation: false,
+                animation: true,
                 customClass: 'animated flipInX'
             })
         } else {
-            if (mail !==  _mail) throw Error("Los mails no son iguales")
-            
             logic.register(this.state.username, this.state.pass)
-            .then(this.props.history.push(`/login`))
+                .then(res => {
+                    
+                    if (res.status === "KO"){
+                        swal({
+                            type: 'error',
+                            title: 'Oops... ',
+                            html: '<p>User already exists!</p>',
+                            animation: true,
+                            customClass: 'animated flipInX'
+                        })
+                        throw Error("User exists")
+                    } else {
+                        swal({
+                            type: 'success',
+                            title: 'Congrats!',
+                            html: successMsg,
+                            animation: true,
+                            customClass: 'animated flipInX'
+                        })
+                    }
+                        
+                })
+                .then(this.props.history.push(`/login`))
+                .catch(err => {
+                    this.props.history.push(`/register`)
+                })
         }
-        
     }
-        render() {
-            const { username, pass, _pass, mail, _mail, data } = this.state
-            
-            return (
+
+    render() {
+        const { username, pass, _pass } = this.state
+
+        return (
             <div className="register">
-            <h1>Register</h1>
+                <h1>Register</h1>
                 <form onSubmit={this.submit}>
-                    <input type="text" onChange={this.inputValues} name="username" value={username} placeholder="User name" autoComplete="off"/>
+                    <input type="text" onChange={this.inputValues} name="username" value={username} placeholder="User name" autoComplete="off" />
                     <input type="password" onChange={this.inputValues} name="pass" value={pass} placeholder="Password" />
                     <input type="password" onChange={this.inputValues} name="_pass" value={_pass} placeholder="Confirm your password" />
                     <button type="submit">Register</button>
                 </form>
                 {
-                   this.state.exists && <p>El usuario introducido ya existe.</p>
+                    this.state.exists && <p>El usuario introducido ya existe.</p>
                 }
             </div>
         )

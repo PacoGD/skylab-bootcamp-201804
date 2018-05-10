@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import logic from '../logic'
+// import logic from '../logic'
+import Xtorage from './Xtorage';
 
 function Header() {
 
@@ -16,9 +17,7 @@ function Header() {
     const regularNav = (
             <nav>
                 <Link to="/">Landing</Link>
-                <Link to="/login">Login</Link>
                 <Link to="/profile">Profile</Link>
-                <Link to="/register">Register</Link>
                 <Link to="/home">Home</Link>
             </nav>
     )
@@ -26,7 +25,7 @@ function Header() {
 
     return (
         <header>
-            {(logic.token === '') ? landingNav : regularNav}
+            {(Xtorage.local.get('user')) ? regularNav : landingNav}
         </header>
     )
 }
