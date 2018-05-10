@@ -50,7 +50,7 @@ class Login extends Component {
     }
 
     bucle = () => {
-        (Xtorage.local.get('user').token) ? this.props.history.push(`/home`) : this.bucle
+        if (Xtorage.local.get('user').token) this.props.history.push(`/home`) 
     }
 
     componentDidMount() {
@@ -58,12 +58,13 @@ class Login extends Component {
             logic.token = Xtorage.local.get('user').token
             logic.id = Xtorage.local.get('user').id
             logic.retrieve()
-                .then(res => res.data)
-                .then(data => {
-                    this.setState({
-                        data
-                    })
-                }).then(alert('you already logged'))
+                // .then(res => res.data)
+                // .then(data => {
+                //     this.setState({
+                //         data
+                //     })
+                // })
+                .catch(alert('you already logged'))
                 .then(this.props.history.push(`/home`))
         }
     }
@@ -73,8 +74,8 @@ class Login extends Component {
         return <div className="login">
             <h1>Login</h1>
             <form onSubmit={this.submit}>
-                <input type="text" onChange={this.userName} value={user} placeholder="User" autocomplete="off"/>
-                <input type="password" onChange={this.userPassword} value={password} placeholder="Password" autocomplete="off"/>
+                <input type="text" onChange={this.userName} value={user} placeholder="User" autoComplete="off"/>
+                <input type="password" onChange={this.userPassword} value={password} placeholder="Password" autoComplete="off"/>
                 <button type="submit">Login</button>
             </form>
         </div>

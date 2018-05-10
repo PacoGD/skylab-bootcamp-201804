@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import logic from '../logic/index'
 // import 'animate.css'
 import swal from 'sweetalert2'
+import Xtorage from './Xtorage';
 
 class Register extends Component {
 
@@ -24,6 +25,12 @@ class Register extends Component {
         this.setState({ [prop]: e.target.value })
     }
 
+    componentDidMount() {
+        if (Xtorage.local.get('user')) {
+            alert('you already logged')
+            this.props.history.push(`/home`)
+        }
+    }
 
     submit = (e) => {
         e.preventDefault()

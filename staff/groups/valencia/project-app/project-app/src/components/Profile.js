@@ -38,7 +38,7 @@ class Profile extends Component {
                     console.log(err)
                     this.props.history.push(`/login`)
                 })
-        }
+        } else  this.props.history.push(`/login`)
     }
 
     submit = (e) => {
@@ -91,7 +91,7 @@ class Profile extends Component {
                         </div>
                         <form onSubmit={this.submitUpdate}>
                             <div className="register-div">
-                                <div id="username-fake-input">{this.state.data.username} </div>
+                                <input type="text" value={this.state.username} placeholder="username" id="username" readOnly/>
                                 <label htmlFor="username" className="static-value">Username </label>
                             </div>
                             <div className="register-div">
