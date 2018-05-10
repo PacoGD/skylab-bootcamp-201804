@@ -34,7 +34,7 @@ class Register extends Component {
                 animation: true,
                 customClass: 'animated flipInX'
             })
-            alert("asdasda")
+            
             this.props.history.push(`/home`)
         }
     }

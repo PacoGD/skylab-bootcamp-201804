@@ -41,8 +41,8 @@ class Login extends Component {
                 return res
             })
             .then(res =>
-                Xtorage.local.set('user', { id: res.data.id, token: res.data.token })
-
+                Xtorage.local.set('user', { id: res.data.id, token: res.data.token})
+                
             )
             .then(this.bucle)
             .catch(error => {

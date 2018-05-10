@@ -42,14 +42,36 @@ class Unregister extends Component {
             .then((result) => {
                 if (result.value) {
                     logic.unregister(this.state.user, this.state.password)
-                    swal(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                        .then(Xtorage.local.remove('user'))
+                        .then(res => {
+                            if (res.status === 'OK') {
+                                Xtorage.local.remove('user')
+                                swal(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                // this.props.history.push(`/register`)
+                            } else {
+                                swal(
+                                    'Error!',
+                                    'Wrong username or password.',
+                                    'warning'
+                                )
+                                // this.props.history.push(`/unregister`)
+                            }
+                        }).then(this.bucle)
                 }
-            }).then(this.props.history.push(`/`))
+            })
+
+    }
+    bucle = () => {
+        if (!Xtorage.local.get('user')) {
+            console.log(Xtorage.local.get('user'))
+            this.props.history.push(`/register`)
+        }else{
+            console.log("no")
+            this.props.history.push(`/unregister`)
+        }
     }
     render() {
         const { user, password } = this.state
@@ -57,6 +79,7 @@ class Unregister extends Component {
             <h2>Delete User</h2>
             <form onSubmit={this.submit}>
                 <input type="text" onChange={this.userName} value={user} placeholder="User" />
+
                 <input type="password" onChange={this.userPassword} value={password} placeholder="Password" />
                 <button type="submit">Login</button>
             </form>
