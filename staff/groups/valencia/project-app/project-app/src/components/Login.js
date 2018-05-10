@@ -58,12 +58,6 @@ class Login extends Component {
             logic.token = Xtorage.local.get('user').token
             logic.id = Xtorage.local.get('user').id
             logic.retrieve()
-                // .then(res => res.data)
-                // .then(data => {
-                //     this.setState({
-                //         data
-                //     })
-                // })
                 .catch(alert('you already logged'))
                 .then(this.props.history.push(`/home`))
         }
