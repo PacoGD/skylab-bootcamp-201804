@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 // import App from '../App'
 import logic from '../logic/index'
 import Xtorage from './Xtorage'
+import swal from 'sweetalert2'
 
 
 class Login extends Component {
@@ -33,24 +34,42 @@ class Login extends Component {
         logic.login(this.state.user, this.state.password)
             .then(res => {
                 if (res.status === "KO") {
-                    //ERROOOOOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRR
-                    throw Error("KO") //BORRALO
                     
-                } 
+                    throw Error("KO") //BORRALO
+
+                }
                 return res
             })
             .then(res =>
                 Xtorage.local.set('user', { id: res.data.id, token: res.data.token })
-                
+
             )
             .then(this.bucle)
             .catch(error => {
-                this.props.history.go(0)
+                swal({
+                    type: 'error',
+                    title: 'Hey!',
+                    html: "<p>Username or password doesn't exist</p>",
+                    animation: true,
+                    customClass: 'animated flipInX'
+                })
+                this.props.history.push(`/login`)
+
             })
     }
 
     bucle = () => {
-        if (Xtorage.local.get('user').token) this.props.history.push(`/home`) 
+        if (Xtorage.local.get('user').token) {
+            swal({
+                type: 'success',
+                title: 'Welcome ' + this.state.user + '!',
+                html: '<p>You are logged!</p>',
+                animation: true,
+                customClass: 'animated flipInX'
+            })
+
+            this.props.history.push(`/home`)
+        }
     }
 
     componentDidMount() {
@@ -58,7 +77,13 @@ class Login extends Component {
             logic.token = Xtorage.local.get('user').token
             logic.id = Xtorage.local.get('user').id
             logic.retrieve()
-                .catch(alert('you already logged'))
+                .catch(swal({
+                    type: 'error',
+                    title: 'Hey!',
+                    html: '<p>You are already logged!</p>',
+                    animation: true,
+                    customClass: 'animated flipInX'
+                }))
                 .then(this.props.history.push(`/home`))
         }
     }
@@ -68,8 +93,8 @@ class Login extends Component {
         return <div className="login">
             <h1>Login</h1>
             <form onSubmit={this.submit}>
-                <input type="text" onChange={this.userName} value={user} placeholder="User" autoComplete="off"/>
-                <input type="password" onChange={this.userPassword} value={password} placeholder="Password" autoComplete="off"/>
+                <input type="text" onChange={this.userName} value={user} placeholder="User" autoComplete="off" />
+                <input type="password" onChange={this.userPassword} value={password} placeholder="Password" autoComplete="off" />
                 <button type="submit">Login</button>
             </form>
         </div>

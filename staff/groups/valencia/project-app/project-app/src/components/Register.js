@@ -27,7 +27,14 @@ class Register extends Component {
 
     componentDidMount() {
         if (Xtorage.local.get('user')) {
-            alert('you already logged')
+            swal({
+                type: 'error',
+                title: 'Hey!',
+                html: '<p>You are already registered!</p>',
+                animation: true,
+                customClass: 'animated flipInX'
+            })
+            alert("asdasda")
             this.props.history.push(`/home`)
         }
     }
@@ -42,7 +49,7 @@ class Register extends Component {
 
         if (pass !== _pass) {
             error = true;
-            msg += '<p>Something went wrong!</p>'
+            msg += '<p>Wrong password!</p>'
         }
 
         if (error) {
@@ -55,16 +62,32 @@ class Register extends Component {
             })
         } else {
             logic.register(this.state.username, this.state.pass)
-                .then(
-                    swal({
-                        type: 'success',
-                        title: 'Congrats!',
-                        html: successMsg,
-                        animation: true,
-                        customClass: 'animated flipInX'
-                    })
-                )
+                .then(res => {
+                    
+                    if (res.status === "KO"){
+                        swal({
+                            type: 'error',
+                            title: 'Oops... ',
+                            html: '<p>User already exists!</p>',
+                            animation: true,
+                            customClass: 'animated flipInX'
+                        })
+                        throw Error("User exists")
+                    } else {
+                        swal({
+                            type: 'success',
+                            title: 'Congrats!',
+                            html: successMsg,
+                            animation: true,
+                            customClass: 'animated flipInX'
+                        })
+                    }
+                        
+                })
                 .then(this.props.history.push(`/login`))
+                .catch(err => {
+                    this.props.history.push(`/register`)
+                })
         }
     }
 
