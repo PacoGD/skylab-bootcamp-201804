@@ -229,3 +229,7 @@ input::placeholder {
     width: 200px;
     height: 200px;
 }
+.searchcountry{
+    color: whitesmoke;
+    font-family: 'Muli', sans-serif;
+}
