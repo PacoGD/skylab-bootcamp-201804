@@ -1,7 +1,7 @@
 /**
  * Common interface for session and local storage
  * 
- * Provides accessors for storing and retrieving any JSON-compliance type items
+ * Provides accessors for storing and retrieving any JSON-compliance type item (value)
  * 
  * @example
  * 
@@ -15,12 +15,14 @@
  * 
  * // local storage
  * 
- * Xtorage.local.set('user', { id: '789ghi' })
+ * Xtorage.local.set('user', { id: 'abc123' })
  *
  * const user = Xtorage.local.get('user')
  * 
- * console.log(user.id) // -> "789ghi"
+ * console.log(user.id) // -> "abc123"
  * 
+ * @author manuelbarzi
+ * @version 1.0.1
  */
 class Xtorage {
 	/**
@@ -40,8 +42,8 @@ class Xtorage {
 	 * @param {string} key - Identifies the value in storage
 	 * @param {any} value - The value to be stored
 	 */
-	set(key, obj) {
-		this.storage.setItem(key, JSON.stringify(obj))
+	set(key, value) {
+		this.storage.setItem(key, typeof value === 'object' ? JSON.stringify(value) : value)
 	}
 
 	/**
@@ -52,7 +54,13 @@ class Xtorage {
 	 * @returns {any} - The stored value
 	 */
 	get(key) {
-		return JSON.parse(this.storage.getItem(key))
+		const value = this.storage.getItem(key)
+
+		try {
+			return JSON.parse(value)
+		} catch (e) {
+			return value === "undefined" ? undefined : value
+		}
 	}
 
 	/**
@@ -60,19 +68,30 @@ class Xtorage {
 	 * 
 	 * @param {string} key - The identifier of the value in storage
 	 */
-	remove(key) {
-		return this.storage.removeItem(key)
-	}
+	remove(key) { this.storage.removeItem(key) }
+
+	/**
+	 * Clears all values from storage
+	 */
+	clear() { this.storage.clear() }
+
+	/**
+	 * Returns the number of items stored
+	 */
+	get length() { return this.storage.length }
 
 	/**
 	 * Session storage singleton
 	 */
-	static session = new Xtorage(sessionStorage)
+	//static session = new Xtorage(sessionStorage) // babel
+	static get session() { return this._session ? this._session : this._session = new Xtorage(sessionStorage) }
 
 	/**
 	 * Local storage singleton
 	 */
-	static local = new Xtorage(localStorage)
+	//static local = new Xtorage(localStorage) // babel
+	static get local() { return this._local ? this._local : this._local = new Xtorage(localStorage) }
 }
 
-export default Xtorage
+//export default Xtorage // babel
+if (typeof module !== 'undefined') module.exports = Xtorage

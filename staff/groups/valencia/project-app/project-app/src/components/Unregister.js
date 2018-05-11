@@ -76,12 +76,12 @@ class Unregister extends Component {
     render() {
         const { user, password } = this.state
         return <div className="unregister">
-            <h2>Delete User</h2>
+            <h1>Delete User</h1>
             <form onSubmit={this.submit}>
                 <input type="text" onChange={this.userName} value={user} placeholder="User" />
 
                 <input type="password" onChange={this.userPassword} value={password} placeholder="Password" />
-                <button type="submit">Login</button>
+                <button type="submit">Delete</button>
             </form>
         </div>
     }
