@@ -56,7 +56,7 @@ class SearchCountry extends Component {
             <div className="left">
                  {this.state.cities.map((city) =>
                      <div key={city.id}>
-                         <h6>{city.name}</h6>
+                         <h6>{city.location.city}</h6>
                     </div>)}
              </div>
         </div>
