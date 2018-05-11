@@ -92,7 +92,7 @@ class Profile extends Component {
                             {/* <div className="half-input">Username:</div> */}
                         </div>
                         <form onSubmit={this.submitUpdate}>
-                            <img type="image" id="profile_pic" src={`${this.state.url}/${this.state.username}`}
+                            <img class="img-perfil" type="image" id="profile_pic" src={`${this.state.url}/${this.state.username}`}
                                 title={`${this.state.username}`} />
                             <div className="register-div">
                                 <input type="text" value={this.state.username} placeholder="username" id="username" readOnly />

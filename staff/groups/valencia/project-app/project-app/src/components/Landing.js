@@ -3,8 +3,13 @@ import React from 'react';
 function Landing (props) {
     return (
         <div className="landing">
-        <h1>Days of tomorrow</h1>
-        
+        <div>
+            <h1>landing</h1>
+        </div>
+        <div>
+            <h1>landing2</h1>
+        </div>
+
         </div>
     )
 }
