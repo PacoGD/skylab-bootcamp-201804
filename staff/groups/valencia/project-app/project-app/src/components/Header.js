@@ -7,8 +7,7 @@ function Header() {
 
     const landingNav = (
         <nav>
-            <img class="logoHeader" src="http://www.zonanegativa.com/imagenes/2012/05/4146.jpg" />
-            <Link to="/">Landing</Link>
+            <Link to="/"><img class="logoHeader" src="https://i.pinimg.com/originals/00/e6/69/00e66922848d057335a4655e9bee2f9c.jpg" /></Link>
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
 
@@ -18,8 +17,7 @@ function Header() {
 
     const regularNav = (
         <nav>
-            <img class="logoHeader" src="http://www.zonanegativa.com/imagenes/2012/05/4146.jpg" />
-            <Link to="/">Landing</Link>
+            <Link to="/"><img class="logoHeader" src="https://i.pinimg.com/originals/00/e6/69/00e66922848d057335a4655e9bee2f9c.jpg" /></Link>
             <Link to="/profile">Profile</Link>
             <Link to="/home">Home</Link>
         </nav>

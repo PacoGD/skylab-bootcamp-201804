@@ -81,7 +81,7 @@ class Unregister extends Component {
                 <input type="text" onChange={this.userName} value={user} placeholder="User" />
 
                 <input type="password" onChange={this.userPassword} value={password} placeholder="Password" />
-                <button type="submit">Login</button>
+                <button type="submit">Delete</button>
             </form>
         </div>
     }
