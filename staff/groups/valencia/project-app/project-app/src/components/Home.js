@@ -15,7 +15,7 @@ function Home(props) {
             {(Xtorage.local.get('user')) ?
                 (
                     <div>
-                        <h1>Under construction</h1>
+                        
                         {/* <img className="underconstruction"src="https://i.pinimg.com/736x/c1/fa/18/c1fa18f640401b16e68a5ad245ef22ea--mariana-comic-book.jpg" /> */}
                         <SearchCountry/>
                         {/* <ShowCities handlerCity={"ES"}/> */}

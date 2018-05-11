@@ -233,3 +233,32 @@ input::placeholder {
     color: whitesmoke;
     font-family: 'Muli', sans-serif;
 }
+
+.left {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(4, 150px);
+    grid-gap: 20px;
+    justify-content: center;
+    overflow-y: scroll;
+  }
+
+  ::-webkit-scrollbar { 
+    display: none; 
+}
+
+  .left > div{
+    margin: 10px;
+    position: relative;
+    padding: 0;
+    height: 40px;
+    width: 150px;
+  }
+
+h6{
+    position: absolute;
+    height: 100%;
+    weight: 100%;
+    text-align: center;
+}
