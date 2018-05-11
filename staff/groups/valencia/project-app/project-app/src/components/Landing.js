@@ -8,7 +8,7 @@ function Landing(props) {
             </div>
           
            
-            {/* <img class="img-landing" src="https://robohash.org/buscador" /> */}
+            {/* <img className="img-landing" src="https://robohash.org/buscador" /> */}
         </div>
     )
 }

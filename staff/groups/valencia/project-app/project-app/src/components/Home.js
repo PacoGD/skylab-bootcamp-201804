@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 // import logic from '../logic'
 import Xtorage from './Xtorage';
 import SearchCountry from './SearchCountry';
+import ShowCities from './ShowCity';
 
 function Home(props) {
 
@@ -15,8 +16,9 @@ function Home(props) {
                 (
                     <div>
                         <h1>Under construction</h1>
-                        <img class="underconstruction"src="https://i.pinimg.com/736x/c1/fa/18/c1fa18f640401b16e68a5ad245ef22ea--mariana-comic-book.jpg" />
+                        {/* <img className="underconstruction"src="https://i.pinimg.com/736x/c1/fa/18/c1fa18f640401b16e68a5ad245ef22ea--mariana-comic-book.jpg" /> */}
                         <SearchCountry/>
+                        {/* <ShowCities handlerCity={"ES"}/> */}
                     </div>
                 ) : (
                     <div>
