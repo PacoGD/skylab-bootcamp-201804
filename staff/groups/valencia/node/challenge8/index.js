@@ -1,0 +1,12 @@
+var http = require('http');
+var url = process.argv[2];
+var info = "";
+
+http.get(url, function(response){
+    response.on("data", function(toConcat){
+        info += toConcat
+    }).on("end", function(){
+        console.log(info.length)
+        console.log(info)
+    })
+})
