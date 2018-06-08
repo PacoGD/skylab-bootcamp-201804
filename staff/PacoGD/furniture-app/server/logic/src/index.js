@@ -26,8 +26,8 @@ const logic = {
                     .then(user => {
                         if (user) throw Error(`user with email ${email} already exists`)
 
-                        return User.create({ name, surname, email, password })
-                            .then(() => true)
+                        return User.create({ name, surname, email, password, username })
+                            .then(user => user._id)
                     })
             })
 
@@ -82,3 +82,5 @@ const logic = {
     deleteOrder(email, password) {
     }
 }
+
+module.exports = logic
