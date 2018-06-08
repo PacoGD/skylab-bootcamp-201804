@@ -26,3 +26,10 @@ Unas pistas de lo que debería tener vuestro proyecto a nivel tecnológico:
 -    CRUD basico tanto del usuario y otra coleccion dependiendo del contenido del proyecto
 -    Control de errores (then – catch)
 -    Test en mocha u otro metodo (minimo un test por cada funcion de la logica // cobertura del 30%) (editado)
+
+06/06
+IMPORTANT
+
+para hoy deberias ir cerrando la primera version de server (incluyendo api-routes, logic, y data) con las primeras tres llamadas a api (como minimo, el maximo lo poneis vosotros, pero sin perderos en el tiempo, que el viernes tiene que verse el circuito completo)
+mañana deberias estar ya con el api client listo para empezar a usarlo dentro del logic de client, y luego usar este logic en react
+venga, buen revuelco en el barro y hasta tomorrow ,)
