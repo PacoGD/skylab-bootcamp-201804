@@ -2,6 +2,7 @@
 
 require('dotenv').config()
 
+const { expect } = require('chai')
 const { mongoose, models: { Item, Order, User } } = require('data')
 const logic = require('.')
 
@@ -15,16 +16,16 @@ describe('logic (furniture )', () => {
     //     date: "10/06/18"
     // }
 
-    before(()=> mongoose.connect(DB_URL))
+    before(() => mongoose.connect(DB_URL))
 
-    beforeEach(()=>{
+    beforeEach(() => {
         return Promise.all([User.remove()])
     })
 
-    describe('register user',()=>{
-        it('should succed on correct data',()=>{
-            logic.registerUser( 'JD',  'John',  'Doe', 'johndoe@mail.com', '123')
-            .then(res => expect(res).toBeDefined())
+    describe('register user', () => {
+        it('should succed on correct data', () => {
+            logic.registerUser('John', 'Doe', 'johndoe@mail.com', 'JD', '123')
+                .then(res => expect(res).to.exist)
         })
     })
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
