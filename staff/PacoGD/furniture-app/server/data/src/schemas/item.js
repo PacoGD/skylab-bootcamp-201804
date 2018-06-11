@@ -13,6 +13,9 @@ module.exports = new Schema({
     color: {
         type: String
     },
+    category: {
+        type: String
+    },
     stock: {
         type: Number
     },

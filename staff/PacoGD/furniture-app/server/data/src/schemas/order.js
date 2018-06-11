@@ -8,5 +8,8 @@ module.exports = new Schema({
     creditCard:{
         type: Number
     },
+    date:{
+        type: String
+    },
     items:[Item]
 })

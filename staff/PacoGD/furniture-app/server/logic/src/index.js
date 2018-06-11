@@ -74,6 +74,11 @@ const logic = {
             })
     },
     listOrders(id) {
+        return Promise.resolve()
+        .then(()=>{
+            return User.findById(id)
+            .then
+        })
     },
     listItems(id) {
     },
