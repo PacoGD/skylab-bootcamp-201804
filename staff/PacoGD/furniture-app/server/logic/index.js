@@ -121,15 +121,55 @@ const logic = {
             .then(() => {
                 return User.findById(id)
                     .then(user => {
-                        if (!user) throw Error(`no user found with id ${id}`) 
+                        if (!user) throw Error(`no user found with id ${id}`)
+                        if (!user.orders) throw Error(`no orders yet`)
 
-                        return 
+                        return user.orders
                     })
             })
     },
-    listItems(id, category) {
+    showItems(categories) {
+        return Promise.resolve()
+            .then(() => {
+                return Item.find({ category: categories })
+                    .then((items) => {
+                        if (!items) throw Error('invalidad category')
+                        return items
+                    })
+            })
+    },
+    listOrdersItems(id) {
+        return Promise.resolve()
+            .then(() => {
+                return User.findById(id)
+                    .then(user => {
+                        if (!user) throw Error(`no user found with id ${id}`)
+                        if (!user.orders) throw Error(`no orders yet`)
+
+                        return user.orders.map(order => order.items)
+                    })
+            })
+    },
+    listItemsFromOrder(id, orderId) {
+        return Promise.resolve()
+            .then(() => {
+                return User.findById(id)
+                    .then(user => {
+                        if (!user) throw Error(`no user found with id ${id}`)
+                        if (!user.orders) throw Error(`no orders yet`)
+
+                        return user.orders.map(order => order.items)
+                    })
+            })
     },
     newOrder(id, adress, card) {
+        return Promise.resolve()
+            .then(user => {
+                if (user) throw Error(`user with username ${username} already exists`)
+                return User.create({ name, surname, email, password, username })
+                    .then(user => user._id)
+            })
+
     },
     deleteOrder(email, password) {
     }
