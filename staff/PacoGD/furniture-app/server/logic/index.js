@@ -162,16 +162,38 @@ const logic = {
                     })
             })
     },
-    newOrder(id, adress, card) {
-        return Promise.resolve()
-            .then(user => {
-                if (user) throw Error(`user with username ${username} already exists`)
-                return User.create({ name, surname, email, password, username })
-                    .then(user => user._id)
-            })
+    // newOrder(id, adress, card, idItem) {
+    //     return Promise.resolve()
+    //         .then(() => {
+    //             return User.findById(id)
+    //                 .then(user => {
+    //                     if (!user) throw Error(`no user found with id ${userId}`)
 
-    },
-    deleteOrder(email, password) {
+    //                     const order = new Order({ deliveryAdress: adress, creditCard: card})
+
+    //                     user.notes.push(note)
+
+    //                     return user.save()
+    //                         .then(() => note.id)
+    //                 })
+    //         })
+    // },
+    deleteOrder(id, orderId) {
+        return Promise.resolve()
+            .then(() => {
+                return User.findById(id)
+                    .then(user => {
+                        if (!user) throw Error(`no user found with id ${id}`)
+
+                        const order = user.orders.id(orderId)
+
+                        if (!order) throw Error(`no note found with id ${orderId}`)
+
+                        order.remove()
+
+                        return user.save()
+                    })
+            })
     }
 }
 
