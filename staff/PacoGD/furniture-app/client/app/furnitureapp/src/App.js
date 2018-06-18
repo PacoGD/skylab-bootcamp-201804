@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Header from './components/Header';
+import Home from './components/Home/Home.js'
+import Footer from './components/Footer';
+import './vendor/bootstrap/4.1.0/css/bootstrap.min.css'
+
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    url: '',
+    token: '',
+    username: '',
+    password: '',
+    id: ''
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        
+        <Header/>
+        <Home/>
+        <Footer />
+
       </div>
     );
   }
