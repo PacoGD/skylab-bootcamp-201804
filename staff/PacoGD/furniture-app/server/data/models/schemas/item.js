@@ -17,9 +17,9 @@ module.exports = new Schema({
         type: String
     },
     stock: {
-        type: Number
+        type: String
     },
     price: {
-        type: Number
+        type: String
     }
 })

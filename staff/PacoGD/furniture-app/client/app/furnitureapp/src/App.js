@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
-import Home from './components/Home/Home.js'
-import Footer from './components/Footer';
-import './vendor/bootstrap/4.1.0/css/bootstrap.min.css'
-
+import Main from './components/main'
+import Footer from './components/footer/footer.js';
+import Header from './components/header/header.js'
+// import './vendor/bootstrap/4.1.0/css/bootstrap.min.css'
 import './App.css';
 
 class App extends Component {
@@ -19,8 +18,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        
         <Header/>
-        <Home/>
+        <Main/>
         <Footer />
 
       </div>

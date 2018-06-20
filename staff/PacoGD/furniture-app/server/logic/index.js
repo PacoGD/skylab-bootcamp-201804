@@ -40,13 +40,20 @@ const logic = {
                     })
                     .then(user => {
                         if (user) throw Error(`user with username ${username} already exists`)
-                        return User.create({ name, surname, email, password, username })
+                        return User.create({ name, surname, email, username, password })
                             .then(user => user._id)
                     })
 
             })
 
 
+    },
+    newItem(title, image, description, color, category, stock, price) {
+        return Promise.resolve()
+            .then(() => {
+                return Item.create({title, image, description, color, category, stock, price})
+                    .then(item => item._id)
+            })
     },
     loginUser(email, password) {
         return Promise.resolve()

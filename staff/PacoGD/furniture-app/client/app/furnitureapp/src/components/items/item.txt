@@ -1,0 +1,85 @@
+title: {
+        type: Mesa Consola extensible 4 en 1 
+    },
+    image: {
+        type: https://www.atrapamuebles.com/726-large_default/mesa-consola-extensible-4-en-1.jpg
+    },
+    description: {
+        type: Atrapa AL MEJOR PRECIO de internet, esta funcional y elegante mesa consola extensible en EXCEPCIONAL color blanco brillo. 
+        Un mueble muy versátil que pasa de ser una práctica cónsola decorativa a una funcional mesa de trabajo, o a una ESPECTACULAR mesa de comedor de hasta 10 comensales.
+        Ideal para aprovechar al máximo el espacio de tu hogar gracias a sus  4 funciones a cuál más práctica y sorprendente. Se convertirá en cada momento en lo que tú necesites, desde un elegante recibidor, a una práctica mesa escritorio, o por qué no...,  a una mesa de cocina, y lo que más te sorprenderá…., convertirla en una espectacular mesa de comedor de hasta 236 centímetros, que puede sacarte de más de un apuro.
+        Si, si..., puedes pasar de 50 a 236 cm para que el espacio en tu salón no se convierta en un problema para realizar reuniones familiares y de amigos. Utiliza sus módulos para conseguir las diferentes medidas que la mesa cónsola extensible te ofrece.
+        Diseñado y fabricado en España.
+        Diseño, calidad, funcionalidad  y el mejor precio de internet.
+        ¿ A qué esperas….?  Aprovéchate.
+        Amueblar  tu casa nunca fue tan barato.
+    },
+    color: {
+        type: Blanco
+    },
+    category: {
+        type: tables
+    },
+    stock: {
+        type: 3
+    },
+    price: {
+        type: 129€
+    }
+----------------------------------------------------------------
+     title: {
+        type: Mesa comedor extensible
+    },
+    image: {
+        type: https://www.atrapamuebles.com/592-large_default/mesa-de-salon-extensible-140-x-90-cm.jpg
+    },
+    description: {
+        type: Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.
+        Mesa extensible de líneas rectas fabricada en melamina con efecto laca brillo.
+        Cuando la mesa está cerrada, cuenta con unas dimensiones de 140 cm. de largo X 90 cm. de ancho y una altura total de 78 centímetros.
+        Pero esta mesa es extensible y puede convertirse en una mesa 190 cm de largo.
+        Es ideal para combinarla con cualquiera de nuestros salones y sillas de nuestro catálogo.
+        Esta mesa de salón / comerdor extensible es un mueble de fabricación nacional (GARANTIA DE CALIDAD).
+        Diseño, calidad, practicidad y el mejor precio de internet.
+        ¿ A qué esperas….?  Aprovéchate, no te quedes sin ella.
+    },
+    color: {
+        type: Blanco
+    },
+    category: {
+        type: tables
+    },
+    stock: {
+        type: 2
+    },
+    price: {
+        type: 109€
+    }
+--------------------------------------------------------------------------
+     title: {
+        type: Mesa comedor TREND
+    },
+    image: {
+        type: https://www.atrapamuebles.com/6672-large_default/mesa-comedor-extensible-trend-gris.jpg
+    },
+    description: {
+        type: Atrapa al Precio más BAJO de internet, esta moderna y actual mesa rectangular extensible de comedor como complemento ideal para tu salón-comedor, La mesa extensible de salón-comedor TREND está diseñado en un elegante y limpio estilo de formas rectas. Amuebla tu casa con la última tendencia de color en muebles (color Gris). 
+        Cuando la mesa extensible de salón-comedor rectangular TREND está cerrada, tiene unas medidas de 130 centímetros de ancho por 90 centímetros de fondo y su altura es de 74,4 centímetros.
+        Pero esta mesa es EXTENSIBLE y puede convertirse en una mesa 190 cm de ancho.
+        La mesa extensible de comedor rectangular TREND es un mueble de fabricación nacional (GARANTIA DE CALIDAD).
+        Muebles de CALIDAD a PRECIO DE LOCURA.  ¡ Tenemos el mejor PRECIO de internet  GARANTIZADO !   
+        ¿ A qué esperas….?  Aprovéchate. Amueblar el salón de tu casa nunca fue tan barato.
+        Compara donde quieras y convéncete por ti mismo… !!!
+    },
+    color: {
+        type: Gris
+    },
+    category: {
+        type: tables
+    },
+    stock: {
+        type: 5
+    },
+    price: {
+        type: 209€
+    }

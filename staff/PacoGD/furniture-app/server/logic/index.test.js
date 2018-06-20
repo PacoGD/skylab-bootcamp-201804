@@ -12,7 +12,15 @@ const { env: { DB_URL } } = process
 describe('logic (furniture )', () => {
     const user = { username: 'JD', name: 'John', surname: 'Doe', email: 'johndoe@mail.com', password: '123' }
     const user2 = { username: 'MT', name: 'Mike', surname: 'Tyson', email: 'miketyson@mail.com', password: '123' }
-    const item = { title: 'Super sofa', image: 'url', description: 'lorem ipsum', color: 'blue', category: 'sofa', stock: 1, price: 100 }
+    const item = {
+        title: 'Super sofa',
+        image: 'url',
+        description: 'lorem ipsum',
+        color: 'blue',
+        category: 'sofa',
+        stock: 1,
+        price: 100
+    }
     const itemI = { title: 'Super sofa1', image: 'url', description: 'lorem ipsum', color: 'blue', category: 'sofa', stock: 1, price: 100 }
     const itemII = { title: 'Super sofa2', image: 'url', description: 'lorem ipsum', color: 'blue', category: 'mesa', stock: 1, price: 100 }
     const order = {
@@ -23,9 +31,9 @@ describe('logic (furniture )', () => {
         deliveryAdress: 'Segarra', creditCard: 9876543210,
         date: "15/06/18"
     }
-    const categorys = 'sofa'
+    const categories = 'sofa'
     before(() => mongoose.connect(DB_URL))
-    
+
     beforeEach(() => {
         return Promise.all([User.remove()])
     })
@@ -266,7 +274,7 @@ describe('logic (furniture )', () => {
             user1.orders.push(order1)
             user1.orders[0].items.push(item1)
             user1.orders[0].items.push(item2)
-           
+
             return user1.save()
                 .then(() =>
                     logic.listOrdersItems(user1.id)
@@ -277,7 +285,7 @@ describe('logic (furniture )', () => {
         })
     })
 
-    false && describe('show items', () => {
+    describe('show items', () => {
         it('should succeed on correct data', () => {
             const user1 = new User(user).save()
             const order1 = new Order(order).save()
@@ -286,17 +294,17 @@ describe('logic (furniture )', () => {
             const item2 = new Item(itemI).save()
             const item3 = new Item(itemII).save()
 
-            Promise.all([user1,order1,order2,item1,item2,item3])
-            .then(() => {
-                logic.showItems(categories)
+            Promise.all([user1, order1, order2, item1, item2, item3])
+                .then(() => {
+                    logic.showItems(categories)
                         .then((item) => {
                             console.log(item)
                             expect(item).to.exist
                         })
-            })
+                })
         })
     })
-    describe('list items', () => {
+    false && describe('list items', () => {
         it('should succeed on correct data', () => {
             const user1 = new User(user)
             const order1 = new Order(order)
@@ -306,7 +314,7 @@ describe('logic (furniture )', () => {
             user1.orders.push(order1)
             user1.orders[0].items.push(item1)
             user1.orders[0].items.push(item2)
-           
+
             return user1.save()
                 .then(() =>
                     logic.listItemsFromOrder(user1.id, user1.orders[0].id)
@@ -317,6 +325,6 @@ describe('logic (furniture )', () => {
                 )
         })
     })
-    
+
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
 })
