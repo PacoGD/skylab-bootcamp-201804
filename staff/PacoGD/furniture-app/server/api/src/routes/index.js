@@ -64,9 +64,8 @@ router.get('/users/:userId', jwtValidator, (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
-router.delete('/users', [jwtValidator, jsonBodyParser], (req, res) => {
-    const { params: { userId }, body: { email, password } } = req
-
+router.delete('/profile', [jwtValidator, jsonBodyParser], (req, res) => {
+   const  {body: { email, password }}  = req
     logic.unregisterUser(email, password)
         .then(() => {
             res.status(200)
@@ -77,7 +76,6 @@ router.delete('/users', [jwtValidator, jsonBodyParser], (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
-
 router.patch('/users/:userId', [jwtValidator, jsonBodyParser], (req, res) => {
     const { body: { email, password, newPassword } } = req
 

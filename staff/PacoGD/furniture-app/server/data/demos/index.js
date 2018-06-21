@@ -2,7 +2,7 @@
 
 require('dotenv').config()
 
-const { mongoose, models: { User, Category, Product, Order } } = require('..')
+const { mongoose, models: { User, Item, Order } } = require('..')
 
 const { env: { DB_URL } } = process
 
@@ -11,59 +11,94 @@ const { env: { DB_URL } } = process
 mongoose.connect(DB_URL)
     .then(() => mongoose.connection.dropDatabase())
     .then(() => {
-        // TODO insertions
+//items
+        let item = {
+            title: 'Mesa Consola extensible 4 en 1',
+            image: 'https://www.atrapamuebles.com/726-large_default/mesa-consola-extensible-4-en-1.jpg',
+            description: 'Atrapa AL MEJOR PRECIO de internet, esta funcional y elegante mesa consola extensible en EXCEPCIONAL color blanco brillo',
+            color: 'Blanco',
+            category: 'tables',
+            stock: '3',
+            price: '129€'
+        }
+        let item2 = {
+            title:'Mesa comedor extensible',
+            image:'https://www.atrapamuebles.com/592-large_default/mesa-de-salon-extensible-140-x-90-cm.jpg',
+            description:'Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.',
+            color: 'Blanco',
+            category: 'tables',
+            stock: '2',
+            price: '109€'
+        }
+        let item3 = {
+            title:'Mesa comedor TREND',
+            image:'https://www.atrapamuebles.com/6672-large_default/mesa-comedor-extensible-trend-gris.jpg',
+            description:'Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.',
+            color: 'Gris',
+            category: 'tables',
+            stock: '5',
+            price: '209€'
+        }
+        let item4 = {
+            title:'Mesa comedor TREND',
+            image:'https://www.atrapamuebles.com/6710-large_default/mesa-consola-extensible-4-en-1-mango.jpg',
+            description:'Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.',
+            color: 'Gris',
+            category: 'tables',
+            stock: '5',
+            price: '209€'
+        }
+        let item5 = {
+            title:'Mesa comedor TREND',
+            image:'https://www.atrapamuebles.com/1764-large_default/mesa-comedor-rubis.jpg',
+            description:'Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.',
+            color: 'Gris',
+            category: 'tables',
+            stock: '5',
+            price: '209€'
+        }
+        let item6 = {
+            title:'Silla comedor TREND',
+            image:'https://www.atrapamuebles.com/5120-large_default/4-sillas-tower-turquesa-diseno.jpg',
+            description:'Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.',
+            color: 'Gris',
+            category: 'chairs',
+            stock: '5',
+            price: '209€'
+        }
+        let item7 = {
+            title:'Sofa comedor TREND',
+            image:'https://www.atrapamuebles.com/4469-large_default/chaiselongue-izquierda-oscar-marron-claro.jpg',
+            description:'Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.',
+            color: 'Gris',
+            category: 'sofa',
+            stock: '5',
+            price: '1300€'
+        }
+        let item8 = {
+            title:'Sofa comedor TREND',
+            image:'https://www.atrapamuebles.com/4806-large_default/chaiselongue-derecha-cayenne-plomo.jpg',
+            description:'Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.',
+            color: 'Gris',
+            category: 'sofa',
+            stock: '5',
+            price: '450€'
+        }
 
-        //Categories
-        let beginnerCourseCategoryData = { name: 'Beginner Course', description: 'Beginner Course desc', image: 'https://firebasestorage.googleapis.com/v0/b/ninja-firebase-tut-72a5c.appspot.com/o/bruno-mars.png?alt=media&token=9b5bcb33-af87-4f84-a92f-78ab1bc8a13b' }
-        let IntermediateCourseCategoryData = { name: 'Intermediate Course', description: 'Intermediate Course desc', image: 'https://firebasestorage.googleapis.com/v0/b/ninja-firebase-tut-72a5c.appspot.com/o/bruno-mars.png?alt=media&token=9b5bcb33-af87-4f84-a92f-78ab1bc8a13b' }
-        let advancedCourseCategoryData = { name: 'Advanced Course', description: 'Advanced Course desc', image: 'https://firebasestorage.googleapis.com/v0/b/ninja-firebase-tut-72a5c.appspot.com/o/bruno-mars.png?alt=media&token=9b5bcb33-af87-4f84-a92f-78ab1bc8a13b' }
-        let improvCourseCategoryData = { name: 'Musical Improv Course', description: 'Musical Improv desc', image: 'https://firebasestorage.googleapis.com/v0/b/ninja-firebase-tut-72a5c.appspot.com/o/bruno-mars.png?alt=media&token=9b5bcb33-af87-4f84-a92f-78ab1bc8a13b' }
-        let theoryCourseCategoryData = { name: 'Musical Theory Course', description: 'Musical Theory desc', image: 'https://firebasestorage.googleapis.com/v0/b/ninja-firebase-tut-72a5c.appspot.com/o/bruno-mars.png?alt=media&token=9b5bcb33-af87-4f84-a92f-78ab1bc8a13b' }
-        let compositionCourseCategoryData = { name: 'Composition Course', description: 'Composition desc', image: 'https://firebasestorage.googleapis.com/v0/b/ninja-firebase-tut-72a5c.appspot.com/o/bruno-mars.png?alt=media&token=9b5bcb33-af87-4f84-a92f-78ab1bc8a13b' }
-
-        //Products
-        let beginnerCourseData = { name: 'Beginner Course I', price: 50, discount: 20, description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim reiciendis corporis dignissimos, blanditiis a iste sed esse delectus unde dolores, nulla iusto quia, animi doloribus distinctio soluta. Aut, et expedita.', image: 'https://res.cloudinary.com/duuegw4uf/image/upload/v1529448149/all-products/Screen_Shot_2018-06-20_at_00.39.00.png', stock: 123 }
-        let beginnerCourseData2 = { name: 'Beginner Course II', price: 60, discount: 15, description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim reiciendis corporis dignissimos, blanditiis a iste sed esse delectus unde dolores, nulla iusto quia, animi doloribus distinctio soluta. Aut, et expedita.', image: 'https://res.cloudinary.com/duuegw4uf/image/upload/v1529448146/all-products/Screen_Shot_2018-06-20_at_00.39.15.png', stock: 11 }
-        let beginnerCourseData3 = { name: 'Beginner Course III', price: 60, discount: 15, description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim reiciendis corporis dignissimos, blanditiis a iste sed esse delectus unde dolores, nulla iusto quia, animi doloribus distinctio soluta. Aut, et expedita.', image: 'https://res.cloudinary.com/duuegw4uf/image/upload/v1529448145/all-products/Screen_Shot_2018-06-20_at_00.40.50.png', stock: 11 }
-        let intermediateCourseData = { name: 'Intermediate Course I', price: 80, discount: 20, description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim reiciendis corporis dignissimos, blanditiis a iste sed esse delectus unde dolores, nulla iusto quia, animi doloribus distinctio soluta. Aut, et expedita.', image: 'https://res.cloudinary.com/duuegw4uf/image/upload/v1529448145/all-products/Screen_Shot_2018-06-20_at_00.37.50.png', stock: 60 }
-        let intermediateCourseData2 = { name: 'Intermediate Course II', price: 80, discount: 20, description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim reiciendis corporis dignissimos, blanditiis a iste sed esse delectus unde dolores, nulla iusto quia, animi doloribus distinctio soluta. Aut, et expedita.', image: 'https://res.cloudinary.com/duuegw4uf/image/upload/v1529448145/all-products/Screen_Shot_2018-06-20_at_00.37.39.png', stock: 60 }
-        let advancedCourseData = { name: 'Advanced Course I', price: 100, discount: 10, description: 'ALorem ipsum dolor sit amet consectetur, adipisicing elit. Enim reiciendis corporis dignissimos, blanditiis a iste sed esse delectus unde dolores, nulla iusto quia, animi doloribus distinctio soluta. Aut, et expedita.', image: 'https://res.cloudinary.com/duuegw4uf/image/upload/v1529448146/all-products/Screen_Shot_2018-06-20_at_00.39.35.png', stock: 20 }
-        let improvCourseData = { name: 'Improv Course I', price: 50, discount: 10, description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim reiciendis corporis dignissimos, blanditiis a iste sed esse delectus unde dolores, nulla iusto quia, animi doloribus distinctio soluta. Aut, et expedita.', image: 'https://res.cloudinary.com/duuegw4uf/image/upload/v1529448145/all-products/Screen_Shot_2018-06-20_at_00.39.43.png', stock: 40 }
-        let theoryCourseData = { name: 'Musical Theory Course I', price: 70, discount: 10, description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim reiciendis corporis dignissimos, blanditiis a iste sed esse delectus unde dolores, nulla iusto quia, animi doloribus distinctio soluta. Aut, et expedita.', image: 'https://res.cloudinary.com/duuegw4uf/image/upload/v1529448144/all-products/Screen_Shot_2018-06-20_at_00.38.21.png', stock: 33 }
-        let compositionCourseData = { name: 'Composition Course I', price: 40, discount: 0, description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim reiciendis corporis dignissimos, blanditiis a iste sed esse delectus unde dolores, nulla iusto quia, animi doloribus distinctio soluta. Aut, et expedita.', image: 'https://firebasestorage.googleapis.com/v0/b/ninja-firebase-tut-72a5c.appspot.com/o/bruno-mars.png?alt=media&token=9b5bcb33-af87-4f84-a92f-78ab1bc8a13b', stock: 49 }
 
         return Promise.all([
-            Category.create(beginnerCourseCategoryData),
-            Category.create(IntermediateCourseCategoryData),
-            Category.create(advancedCourseCategoryData),
-            Category.create(improvCourseCategoryData),
-            Category.create(theoryCourseCategoryData),
-            Category.create(compositionCourseCategoryData)
+            Item.create(item),
+            Item.create(item2),
+            Item.create(item3),
+            Item.create(item4),
+            Item.create(item5),
+            Item.create(item6),
+            Item.create(item7),
+            Item.create(item8),
+           
         ])
-            .then(res => {
-                beginnerCourseData.category = res[0]._id
-                beginnerCourseData2.category = res[0]._id
-                beginnerCourseData3.category = res[0]._id
-                intermediateCourseData.category = res[1]._id
-                intermediateCourseData2.category = res[1]._id
-                advancedCourseData.category = res[2]._id
-                improvCourseData.category = res[3]._id
-                theoryCourseData.category = res[4]._id
-                compositionCourseData.category = res[5]._id
 
-                return Promise.all([
-                    Product.create(beginnerCourseData),
-                    Product.create(beginnerCourseData2),
-                    Product.create(beginnerCourseData3),
-                    Product.create(intermediateCourseData),
-                    Product.create(intermediateCourseData2),
-                    Product.create(advancedCourseData),
-                    Product.create(improvCourseData),
-                    Product.create(theoryCourseData),
-                    Product.create(compositionCourseData),
-                ])
-            })
     })
-    .then(() => User.create({ name: 'John', surname: 'Doe', email: 'jd@mail.com', address: 'Roc Boronat 35', password: '123' }))
+    .then(() => User.create({ username: 'JD', name: 'John', surname: 'Doe', email: 'jd@mail.com', password: '123' }))
     .then(() => mongoose.disconnect())
     .then(() => console.log('done'))

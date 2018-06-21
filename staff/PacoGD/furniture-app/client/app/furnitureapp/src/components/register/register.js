@@ -9,7 +9,6 @@ class Register extends Component {
     username: "",
     password: "",
     name: "",
-    username: "",
     email: ""
 }
 inputValues = (e) => {
@@ -21,7 +20,6 @@ submit = (e) => {
     e.preventDefault()
     api.registerUser(this.state.username, this.state.name, this.state.surname, this.state.email, this.state.password)
         .then(() => {
-            console.log('registrado!')
             this.props.history.push(`/login`)
         })
         .catch(error => {

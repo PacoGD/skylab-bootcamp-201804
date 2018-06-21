@@ -87,17 +87,17 @@ class Landing extends React.Component {
             <br />
             <div className="row">
               <div className="col-sm-4">
-                
-                <p><Link to="/tables"><img src="https://i.pinimg.com/736x/cb/4c/53/cb4c53a5bd1d4a3510062bd53789beb9.jpg" className="img-responsive" alt="Image" /></Link></p>
-                <p><Link to="/tables">Tables</Link></p>
+
+                <Link to="/tables"><img src="https://i.pinimg.com/736x/cb/4c/53/cb4c53a5bd1d4a3510062bd53789beb9.jpg" className="img-responsive" alt="Image" /></Link>
+                <Link to="/tables">Tables</Link>
               </div>
               <div className="col-sm-4">
-                <img src="https://img1.kenayhome.com/25999-large_default/cali-silla-ratan-negro.jpg" className="img-responsive" alt="Image" />
-                <p>Chairs</p>
+                <Link to="/chairs"><img src="https://img1.kenayhome.com/25999-large_default/cali-silla-ratan-negro.jpg" className="img-responsive" alt="Image" /></Link>
+                <Link to="/chairs">Chairs</Link>
               </div>
               <div className="col-sm-4">
-                <img src="https://img2.kenayhome.com/28139-large_default/ohio-sofa-rincon-tapizado-tela-gris.jpg" className="img-responsive" alt="Image" />
-                <p>Sofa</p>
+                <Link to="/sofa"><img src="https://img2.kenayhome.com/28139-large_default/ohio-sofa-rincon-tapizado-tela-gris.jpg" className="img-responsive" alt="Image" /></Link>
+                <Link to="/sofa">Sofa</Link>
               </div>
 
             </div>

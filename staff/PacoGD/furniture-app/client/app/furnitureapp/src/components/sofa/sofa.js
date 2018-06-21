@@ -3,26 +3,29 @@ import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } fr
 import api from 'api';
 import Xtorage from '../xtorage'
 
-class Tables extends Component {
+
+class Sofa extends Component {
     state = {
-        items: [],
-        order:[]
+        items: []
     }
     componentDidMount() {
-        api.showItems('tables')
-            .then((tables) => {
+        api.showItems('sofa')
+            .then((sofa) => {
                 this.setState({
-                    items: tables
+                    items: sofa
                 })
             })
             .catch(error => {
                 console.error(error)
                 this.props.history.push(`/`)
+
             })
     }
     buy = (itemId) => {
+ 
         if (Xtorage.local.get('user')){
             this.props.history.push(`/cart/${itemId}`)
+            
         } else {
             window.alert("Please login first");
             this.props.history.push(`/login`)
@@ -30,8 +33,8 @@ class Tables extends Component {
     }
     render() {
         return (
-            <div className="tables">
-                <h1 className="landing-h1">Furniture Tables </h1>
+            <div className="Sofa">
+                <h1 className="landing-h1">Furniture Sofa </h1>
                 <div >
                     {this.state.items.map(item => {
                         return (
@@ -54,4 +57,4 @@ class Tables extends Component {
     }
 }
 
-export default Tables
+export default Sofa

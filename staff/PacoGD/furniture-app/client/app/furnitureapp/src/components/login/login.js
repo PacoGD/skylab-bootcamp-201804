@@ -26,7 +26,7 @@ class Login extends Component {
            
             .then(res =>{
 
-                Xtorage.local.set('user', { id: res.data.id, token: res.data.token})
+                Xtorage.local.set('user', res.data.id)
                 this.props.history.push(`/`)
             })
             .catch(error => {

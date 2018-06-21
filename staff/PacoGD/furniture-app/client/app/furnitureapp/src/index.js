@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-// import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import api from 'api';
+import Xtorage from './components/xtorage';
 
 
-// ReactDOM.render(<App />, document.getElementById('root'));
-// registerServiceWorker();
+api.token = function (token) {
+    if (token) {
+        Xtorage.local.set('token', token)
+        return
+    }
+
+    return Xtorage.local.get('token')
+}
 
 ReactDOM.render(<BrowserRouter>
     <App />

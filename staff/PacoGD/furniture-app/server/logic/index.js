@@ -169,19 +169,19 @@ const logic = {
                     })
             })
     },
-    // newOrder(id, adress, card, idItem) {
+    // newOrder(id, itemId) {
     //     return Promise.resolve()
     //         .then(() => {
     //             return User.findById(id)
     //                 .then(user => {
     //                     if (!user) throw Error(`no user found with id ${userId}`)
 
-    //                     const order = new Order({ deliveryAdress: adress, creditCard: card})
+    //                     const order = new Order({ item : {}})
 
     //                     user.notes.push(note)
 
     //                     return user.save()
-    //                         .then(() => note.id)
+    //                         .then(() => user)
     //                 })
     //         })
     // },

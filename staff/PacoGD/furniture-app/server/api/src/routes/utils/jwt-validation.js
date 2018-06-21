@@ -6,7 +6,6 @@ let _secret = 'NO-SECRET'
 
 function jwtValidator(req, res, next) {
     let message
-
     const { params: { userId } } = req
 
     try {
@@ -15,7 +14,6 @@ function jwtValidator(req, res, next) {
         const token = auth.split(' ')[1]
 
         const { id } = jwt.verify(token, _secret)
-
         if (id !== userId) message = `user id ${userId} does not match token user id ${id}`
 
         if (!message) return next()
@@ -27,7 +25,7 @@ function jwtValidator(req, res, next) {
     res.json({ status: 'KO', error: message })
 }
 
-module.exports = function(secret) {
+module.exports = function (secret) {
     _secret = secret
 
     return jwtValidator
