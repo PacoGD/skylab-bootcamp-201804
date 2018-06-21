@@ -16,7 +16,7 @@ class Profile extends Component {
     }
     delete = (e) => {
         e.preventDefault()
-        api.unregisterUser(this.state.email, this.state.password)
+        api.unregisterUser(this.state.email, this.state.password, Xtorage.local.get('user'))
             .then(res => {
                 if (res.status === 'OK') {
                     Xtorage.local.remove('user')
@@ -51,7 +51,7 @@ class Profile extends Component {
                         <button type="submit">Delete</button>
                     </form>
                 </div>
-                 <div className="UpdatePassword">
+                <div className="UpdatePassword">
                     <h1>Update Password</h1>
                     <form >
                         <input type="email" name="email" placeholder="email" onChange={this.inputValues} />
@@ -59,7 +59,7 @@ class Profile extends Component {
                         <input type="password" name="newpassword" placeholder="New password" onChange={this.inputValues} />
                         <button type="submit">Update</button>
                     </form>
-                </div> 
+                </div>
 
             </div>
         )

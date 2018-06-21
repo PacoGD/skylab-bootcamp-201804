@@ -118,10 +118,10 @@ const furnitureApi = {
                 } else throw err
             })
     },
-    unregisterUser(email, password) {
+    unregisterUser(email, password, userId) {
         return Promise.resolve()
             .then(() => {
-                return axios.delete(`${this.url}/profile/:user`, {params: { user }, data: { email, password } }, { headers: { authorization: `Bearer ${this.token()}` } })
+                return axios.delete(`${this.url}/profile/${userId}`, {params: { userId }, data: { email, password } }, { headers: { authorization: `Bearer ${this.token()}` } })
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
 
