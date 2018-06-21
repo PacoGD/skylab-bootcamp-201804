@@ -14,7 +14,7 @@ class Profile extends Component {
             this.props.history.push(`/login`)
         }
     }
-    delete = (e) => {
+    unregister = (e) => {
         e.preventDefault()
         api.unregisterUser(this.state.email, this.state.password, Xtorage.local.get('user'))
             .then(res => {
@@ -45,7 +45,7 @@ class Profile extends Component {
                 </div>
                 <div className="Unregister">
                     <h1>Unregister</h1>
-                    <form onSubmit={this.delete}>
+                    <form onSubmit={this.unregister}>
                         <input type="email" name="email" placeholder="email" onChange={this.inputValues} />
                         <input type="password" name="password" placeholder="password" onChange={this.inputValues} />
                         <button type="submit">Delete</button>

@@ -1,15 +1,18 @@
-const { Schema } = require('mongoose')
+const { Schema, SchemaTypes: { ObjectId } } = require('mongoose')
 const Item = require('./item')
 
 module.exports = new Schema({
-    deliveryAdress:{
+    deliveryAdress: {
         type: String,
     },
-    creditCard:{
+    creditCard: {
         type: Number
     },
-    date:{
+    date: {
         type: String
     },
-    items:[Item]
+    items: [{
+        type: ObjectId,
+        ref: 'Item'
+    }]
 })

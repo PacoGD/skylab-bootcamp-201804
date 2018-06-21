@@ -1,15 +1,15 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
-import Register from './register/register'
-import Login from './login/login'
-import Landing from './landing/landing'
-import Items from './items/items'
-import Tables from './tables/tables'
-import Chairs from './chairs/chairs'
-import Sofa from './sofa/sofa'
-import Cart from './cart/cart';
-import Profile from './profile/profile';
+import Register from './register'
+import Login from './login'
+import Landing from './landing'
+import Items from './items'
+import Tables from './tables'
+import Chairs from './chairs'
+import Sofa from './sofa'
+import Cart from './cart';
+import Profile from './profile';
 
 function Main(){
 
