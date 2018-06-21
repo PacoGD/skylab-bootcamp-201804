@@ -3,7 +3,7 @@
 var axios = require('axios');
 
 var furnitureApi = {
-    url: 'NO-URL',
+    url: 'URL',
 
     token: function token(_token) {
         if (_token) {

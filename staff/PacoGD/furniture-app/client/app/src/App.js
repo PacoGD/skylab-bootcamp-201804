@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Main from './components/main'
-import Footer from './components/footer/footer.js';
-import Header from './components/header/header.js'
+import Footer from './components/footer';
+import Header from './components/header'
 // import './vendor/bootstrap/4.1.0/css/bootstrap.min.css'
 import './App.css';
 
