@@ -13,7 +13,7 @@ const jwtValidator = jwtValidation(TOKEN_SECRET)
 const jsonBodyParser = bodyParser.json()
 
 router.post('/users', jsonBodyParser, (req, res) => {
-    const { body: { username, name, surname, email, password } } = req
+    const { body: { name, surname, email, username, password } } = req
     logic.registerUser(name, surname, email, username, password)
         .then(id => {
             res.status(201)
@@ -24,22 +24,10 @@ router.post('/users', jsonBodyParser, (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
-router.post('/items', jsonBodyParser, (req, res) => {
-    const { body: { title, image, description, color, category, stock, price } } = req
-    logic.newItem(title, image, description, color, category, stock, price)
-        .then(id => {
-            res.status(201)
-            res.json({ status: 'OK', data: { id } })
-        })
-        .catch(({ message }) => {
-            res.status(400)
-            res.json({ status: 'KO', error: message })
-        })
-})
-router.post('/login', jsonBodyParser, (req, res) => {
+router.post('/auth', jsonBodyParser, (req, res) => {
     const { body: { email, password } } = req
 
-    logic.loginUser(email, password)
+    logic.authenticateUser(email, password)
         .then(id => {
             const token = jwt.sign({ id }, TOKEN_SECRET, { expiresIn: TOKEN_EXP })
 
@@ -64,22 +52,10 @@ router.get('/users/:userId', jwtValidator, (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
-router.delete('/profile', [jwtValidator, jsonBodyParser], (req, res) => {
-   const  {body: { email, password }}  = req
-    logic.unregisterUser(email, password)
-        .then(() => {
-            res.status(200)
-            res.json({ status: 'OK' })
-        })
-        .catch(({ message }) => {
-            res.status(400)
-            res.json({ status: 'KO', error: message })
-        })
-})
 router.patch('/users/:userId', [jwtValidator, jsonBodyParser], (req, res) => {
-    const { body: { email, password, newPassword } } = req
+    const { params: { userId }, body: { email, password, newPassword } } = req
 
-    logic.updateUser(email, password, newPassword)
+    logic.updatePassword(userId, email, password, newPassword)
         .then(() => {
             res.status(200)
             res.json({ status: 'OK' })
@@ -89,7 +65,18 @@ router.patch('/users/:userId', [jwtValidator, jsonBodyParser], (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
-
+router.delete('/users/:userId', [jwtValidator, jsonBodyParser], (req, res) => {
+    const { params: { userId }, body: { email, password } } = req
+    logic.unregisterUser(userId, email, password)
+        .then(() => {
+            res.status(200)
+            res.json({ status: 'OK' })
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
+})
 router.get('/users/:userId/orders/', jwtValidator, (req, res) => {
     const { params: { id } } = req
 
@@ -102,7 +89,6 @@ router.get('/users/:userId/orders/', jwtValidator, (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
-
 router.get('/:categories', (req, res) => {
     const { params: { categories } } = req
 
@@ -147,3 +133,16 @@ router.delete('/users/:userId/orders/:orderId', jsonBodyParser, (req, res) => {
 })
 
 module.exports = router
+
+// router.post('/items', jsonBodyParser, (req, res) => {
+//     const { body: { title, image, description, color, category, stock, price } } = req
+//     logic.newItem(title, image, description, color, category, stock, price)
+//         .then(id => {
+//             res.status(201)
+//             res.json({ status: 'OK', data: { id } })
+//         })
+//         .catch(({ message }) => {
+//             res.status(400)
+//             res.json({ status: 'KO', error: message })
+//         })
+// })

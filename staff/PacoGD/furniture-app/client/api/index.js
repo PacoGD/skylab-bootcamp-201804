@@ -5,13 +5,7 @@ const axios = require('axios')
 const furnitureApi = {
     url: 'URL',
 
-    token(token){
-        if(token){
-            this._token = token
-            return
-        }
-        return this._token
-    },
+    token: '',
 
     registerUser(username, name, surname, email, password) {
         return Promise.resolve()
@@ -53,17 +47,17 @@ const furnitureApi = {
                 } else throw err
             })
     },
-    login(email, password) {
+    authenticateUser(email, password) {
 
         return Promise.resolve()
             .then(() => {
-                return axios.post(`${this.url}/login`, { email, password })
+                return axios.post(`${this.url}/auth`, { email, password })
                     .then(({ status, data }) => {
                         if (status !== 200) throw Error(`unexpected response status ${status} (${data.status})`)
 
                         const { data: { id, token } } = data
 
-                        this.token(token)
+                        this.token
 
                         return data
                     })
@@ -118,10 +112,10 @@ const furnitureApi = {
                 } else throw err
             })
     },
-    unregisterUser(email, password, userId) {
+    unregisterUser(userId, email, password) {
         return Promise.resolve()
             .then(() => {
-                return axios.delete(`${this.url}/profile/${userId}`, {params: { userId }, data: { email, password } }, { headers: { authorization: `Bearer ${this.token()}` } })
+                return axios.delete(`${this.url}/users/${userId}`, { data: { email, password } ,  headers: { authorization: `Bearer ${this.token}` } })
                     .then(({ status, data }) => {
                         if (status !== 200 || data.status !== 'OK') throw Error(`unexpected response status ${status} (${data.status})`)
 

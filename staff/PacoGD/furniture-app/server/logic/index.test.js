@@ -10,17 +10,10 @@ const logic = require('.')
 const { env: { DB_URL } } = process
 
 describe('logic (furniture )', () => {
-    const user = { username: 'JD', name: 'John', surname: 'Doe', email: 'johndoe@mail.com', password: '123' }
+    const user = { username: 'JD', name: 'John', surname: 'Doe', email: 'jd@mail.com', password: '123' }
     const user2 = { username: 'MT', name: 'Mike', surname: 'Tyson', email: 'miketyson@mail.com', password: '123' }
-    const item = {
-        title: 'Super sofa',
-        image: 'url',
-        description: 'lorem ipsum',
-        color: 'blue',
-        category: 'sofa',
-        stock: 1,
-        price: 100
-    }
+    const dummyUserId = '123456781234567812345678'
+    const item = { title: 'Super sofa', image: 'url', description: 'lorem ipsum', color: 'blue', category: 'sofa', stock: 1, price: 100 }
     const itemI = { title: 'Super sofa1', image: 'url', description: 'lorem ipsum', color: 'blue', category: 'sofa', stock: 1, price: 100 }
     const itemII = { title: 'Super sofa2', image: 'url', description: 'lorem ipsum', color: 'blue', category: 'mesa', stock: 1, price: 100 }
     const order = {
@@ -140,6 +133,46 @@ describe('logic (furniture )', () => {
         )
     })
 
+    false && describe('authenticate user', () => {
+        it('should succeed on correct data', () =>
+            User.create(user)
+                .then(() =>
+                    logic.authenticateUser('johndoe@mail.com', '123')
+                        .then(id => expect(id).to.exist)
+                )
+        )
+
+        it('should fail on no user email', () =>
+            logic.authenticateUser()
+                .catch(({ message }) => expect(message).to.equal('user email is not a string'))
+        )
+
+        it('should fail on empty user email', () =>
+            logic.authenticateUser('')
+                .catch(({ message }) => expect(message).to.equal('user email is empty or blank'))
+        )
+
+        it('should fail on blank user email', () =>
+            logic.authenticateUser('     ')
+                .catch(({ message }) => expect(message).to.equal('user email is empty or blank'))
+        )
+
+        it('should fail on no user password', () =>
+            logic.authenticateUser(user.email)
+                .catch(({ message }) => expect(message).to.equal('user password is not a string'))
+        )
+
+        it('should fail on empty user password', () =>
+            logic.authenticateUser(user.email, '')
+                .catch(({ message }) => expect(message).to.equal('user password is empty or blank'))
+        )
+
+        it('should fail on blank user password', () =>
+            logic.authenticateUser(user.email, '     ')
+                .catch(({ message }) => expect(message).to.equal('user password is empty or blank'))
+        )
+    })
+
     false && describe('retrive user', () => {
         it('it should succed on correct data', () => {
             return User.create(user)
@@ -163,85 +196,132 @@ describe('logic (furniture )', () => {
         })
 
     })
-    false && describe('unregister user', () => {
+    
+    false && describe('udpate password', () => {
         it('should succeed on correct data', () =>
             User.create(user)
-                .then(() => {
-                    return logic.unregisterUser('johndoe@mail.com', '123')
+                .then(({ id }) => {
+                    return logic.updatePassword(id, 'jd@mail.com', '123', '456')
                         .then(res => {
                             expect(res).to.be.true
+
+                            return User.findById(id)
+                        })
+                        .then(user => {
+                            expect(user).to.exist
+
+                            expect(user.id).to.equal(id)
+                            expect(user.password).to.equal('456')
                         })
                 })
         )
 
+        it('should fail on no user id', () =>
+            logic.updatePassword()
+                .catch(({ message }) => expect(message).to.equal('user id is not a string'))
+        )
+
+        it('should fail on empty user id', () =>
+            logic.updatePassword('')
+                .catch(({ message }) => expect(message).to.equal('user id is empty or blank'))
+        )
+
+        it('should fail on blank user id', () =>
+            logic.updatePassword('     ')
+                .catch(({ message }) => expect(message).to.equal('user id is empty or blank'))
+        )
+
         it('should fail on no user email', () =>
-            logic.unregisterUser()
+            logic.updatePassword(dummyUserId)
                 .catch(({ message }) => expect(message).to.equal('user email is not a string'))
         )
 
         it('should fail on empty user email', () =>
-            logic.unregisterUser('')
+            logic.updatePassword(dummyUserId, '')
                 .catch(({ message }) => expect(message).to.equal('user email is empty or blank'))
         )
 
         it('should fail on blank user email', () =>
-            logic.unregisterUser('     ')
+            logic.updatePassword(dummyUserId, '     ')
                 .catch(({ message }) => expect(message).to.equal('user email is empty or blank'))
         )
 
         it('should fail on no user password', () =>
-            logic.unregisterUser(user.email)
+            logic.updatePassword(dummyUserId, user.email)
                 .catch(({ message }) => expect(message).to.equal('user password is not a string'))
         )
 
         it('should fail on empty user password', () =>
-            logic.unregisterUser(user.email, '')
+            logic.updatePassword(dummyUserId, user.email, '')
                 .catch(({ message }) => expect(message).to.equal('user password is empty or blank'))
         )
 
         it('should fail on blank user password', () =>
-            logic.unregisterUser(user.email, '     ')
+            logic.updatePassword(dummyUserId, user.email, '     ')
                 .catch(({ message }) => expect(message).to.equal('user password is empty or blank'))
         )
     })
-    false && describe('login user', () => {
+
+    false && describe('unregister user', () => {
         it('should succeed on correct data', () =>
             User.create(user)
-                .then(() =>
-                    logic.loginUser('johndoe@mail.com', '123')
-                        .then(id => expect(id).to.exist)
-                )
+                .then(({ id }) => {
+                    return logic.unregisterUser(id, 'jd@mail.com', '123')
+                        .then(res => {
+                            expect(res).to.be.true
+
+                            return User.findById(id)
+                        })
+                        .then(user => {
+                            expect(user).to.be.null
+                        })
+                })
+        )
+        it('should fail on no user id', () =>
+            logic.unregisterUser()
+                .catch(({ message }) => expect(message).to.equal('user id is not a string'))
+        )
+
+        it('should fail on empty user id', () =>
+            logic.unregisterUser('')
+                .catch(({ message }) => expect(message).to.equal('user id is empty or blank'))
+        )
+
+        it('should fail on blank user id', () =>
+            logic.unregisterUser('     ')
+                .catch(({ message }) => expect(message).to.equal('user id is empty or blank'))
         )
 
         it('should fail on no user email', () =>
-            logic.loginUser()
+            logic.unregisterUser(dummyUserId)
                 .catch(({ message }) => expect(message).to.equal('user email is not a string'))
         )
 
         it('should fail on empty user email', () =>
-            logic.loginUser('')
+            logic.unregisterUser(dummyUserId, '')
                 .catch(({ message }) => expect(message).to.equal('user email is empty or blank'))
         )
 
         it('should fail on blank user email', () =>
-            logic.loginUser('     ')
+            logic.unregisterUser(dummyUserId, '     ')
                 .catch(({ message }) => expect(message).to.equal('user email is empty or blank'))
         )
 
         it('should fail on no user password', () =>
-            logic.loginUser(user.email)
+            logic.unregisterUser(dummyUserId, user.email)
                 .catch(({ message }) => expect(message).to.equal('user password is not a string'))
         )
 
         it('should fail on empty user password', () =>
-            logic.loginUser(user.email, '')
+            logic.unregisterUser(dummyUserId, user.email, '')
                 .catch(({ message }) => expect(message).to.equal('user password is empty or blank'))
         )
 
         it('should fail on blank user password', () =>
-            logic.loginUser(user.email, '     ')
+            logic.unregisterUser(dummyUserId, user.email, '     ')
                 .catch(({ message }) => expect(message).to.equal('user password is empty or blank'))
         )
+
     })
 
     false && describe('list orders', () => {
@@ -285,7 +365,7 @@ describe('logic (furniture )', () => {
         })
     })
 
-    describe('show items', () => {
+    false && describe('show items', () => {
         it('should succeed on correct data', () => {
             const user1 = new User(user).save()
             const order1 = new Order(order).save()
@@ -304,6 +384,7 @@ describe('logic (furniture )', () => {
                 })
         })
     })
+
     false && describe('list items', () => {
         it('should succeed on correct data', () => {
             const user1 = new User(user)

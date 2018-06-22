@@ -5,13 +5,8 @@ var axios = require('axios');
 var furnitureApi = {
     url: 'URL',
 
-    token: function token(_token) {
-        if (_token) {
-            this._token = _token;
-            return;
-        }
-        return this._token;
-    },
+    token: '',
+
     registerUser: function registerUser(username, name, surname, email, password) {
         var _this = this;
 
@@ -58,11 +53,11 @@ var furnitureApi = {
             } else throw err;
         });
     },
-    login: function login(email, password) {
+    authenticateUser: function authenticateUser(email, password) {
         var _this3 = this;
 
         return Promise.resolve().then(function () {
-            return axios.post(_this3.url + '/login', { email: email, password: password }).then(function (_ref3) {
+            return axios.post(_this3.url + '/auth', { email: email, password: password }).then(function (_ref3) {
                 var status = _ref3.status,
                     data = _ref3.data;
 
@@ -73,7 +68,7 @@ var furnitureApi = {
                     token = _data$data.token;
 
 
-                _this3.token(token);
+                _this3.token;
 
                 return data;
             });
@@ -134,11 +129,11 @@ var furnitureApi = {
             } else throw err;
         });
     },
-    unregisterUser: function unregisterUser(email, password, userId) {
+    unregisterUser: function unregisterUser(userId, email, password) {
         var _this6 = this;
 
         return Promise.resolve().then(function () {
-            return axios.delete(_this6.url + '/profile/' + userId, { params: { userId: userId }, data: { email: email, password: password } }, { headers: { authorization: 'Bearer ' + _this6.token() } }).then(function (_ref6) {
+            return axios.delete(_this6.url + '/users/' + userId, { data: { email: email, password: password }, headers: { authorization: 'Bearer ' + _this6.token } }).then(function (_ref6) {
                 var status = _ref6.status,
                     data = _ref6.data;
 

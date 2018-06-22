@@ -16,10 +16,12 @@ class Profile extends Component {
     }
     unregister = (e) => {
         e.preventDefault()
-        api.unregisterUser(this.state.email, this.state.password, Xtorage.local.get('user'))
+        api.token = Xtorage.local.get('token')
+        api.unregisterUser(Xtorage.local.get('user'), this.state.email, this.state.password, )
             .then(res => {
                 if (res.status === 'OK') {
                     Xtorage.local.remove('user')
+                    Xtorage.local.remove('token')
                 }
             })
             .then(() => {

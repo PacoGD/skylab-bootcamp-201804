@@ -19,14 +19,15 @@ class Login extends Component {
         const password = e.target.value
         this.setState({ password })
     }
-
     submit = (e) => {
         e.preventDefault()
-        api.login(this.state.email, this.state.password)
+        api.authenticateUser(this.state.email, this.state.password)
            
             .then(res =>{
 
                 Xtorage.local.set('user', res.data.id)
+                Xtorage.local.set('token', res.data.token)
+                
                 this.props.history.push(`/`)
             })
             .catch(error => {
