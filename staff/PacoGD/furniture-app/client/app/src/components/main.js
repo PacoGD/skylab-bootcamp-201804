@@ -9,7 +9,7 @@ import Tables from './tables'
 import Chairs from './chairs'
 import Sofa from './sofa'
 import Cart from './cart';
-import Profile from './profile';
+// import Profile from './profile';
 
 function Main(){
 
@@ -24,8 +24,8 @@ function Main(){
             <Route path = '/chairs'component={Chairs}/>
             <Route path = '/sofa'component={Sofa}/>
             <Route path = '/items'component={Items}/>
-            <Route path = '/cart/:itemId' component={Cart}/>
-            <Route path = '/profile' component={Profile}/>
+            <Route path = '/cart' component={Cart}/>
+            {/* <Route path = '/profile' component={Profile}/> */}
 
             
         </Switch>

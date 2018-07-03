@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose')
+const { Schema, SchemaTypes: { ObjectId } } = require('mongoose')
 const Order = require('./order')
 
 module.exports = new Schema({
@@ -23,5 +23,8 @@ module.exports = new Schema({
         type: String,
         required: true
     },
-    orders:[Order]
+    orders:[{
+        type: ObjectId,
+        ref: 'Order'
+    }]
 })

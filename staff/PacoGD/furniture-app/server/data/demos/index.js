@@ -13,9 +13,9 @@ mongoose.connect(DB_URL)
     .then(() => {
 //items
         let item = {
-            title: 'Mesa Consola extensible 4 en 1',
+            title: 'Mesa Consola extensible',
             image: 'https://www.atrapamuebles.com/726-large_default/mesa-consola-extensible-4-en-1.jpg',
-            description: 'Atrapa AL MEJOR PRECIO de internet, esta funcional y elegante mesa consola extensible en EXCEPCIONAL color blanco brillo',
+            description: 'Atrapa AL MEJOR PRECIO de internet, esta funcional y elegante mesa consola extensible',
             color: 'Blanco',
             category: 'tables',
             stock: '3',
@@ -40,7 +40,7 @@ mongoose.connect(DB_URL)
             price: '209€'
         }
         let item4 = {
-            title:'Mesa comedor TREND',
+            title:'Mesa comedor BART',
             image:'https://www.atrapamuebles.com/6710-large_default/mesa-consola-extensible-4-en-1-mango.jpg',
             description:'Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.',
             color: 'Gris',
@@ -58,7 +58,7 @@ mongoose.connect(DB_URL)
             price: '209€'
         }
         let item6 = {
-            title:'Silla comedor TREND',
+            title:'Silla comedor DORT',
             image:'https://www.atrapamuebles.com/5120-large_default/4-sillas-tower-turquesa-diseno.jpg',
             description:'Atrapa AL MEJOR PRECIO esta moderna mesa de comedor  a un precio que no volverá a repetirse.',
             color: 'Gris',

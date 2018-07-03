@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import api from 'api';
 import Xtorage from '../xtorage'
+import './index.css'
+import App from '../../App';
 api.url = 'http://localhost:5000/api'
 
 class Login extends Component {
@@ -22,12 +24,12 @@ class Login extends Component {
     submit = (e) => {
         e.preventDefault()
         api.authenticateUser(this.state.email, this.state.password)
-           
-            .then(res =>{
+
+            .then(res => {
 
                 Xtorage.local.set('user', res.data.id)
                 Xtorage.local.set('token', res.data.token)
-                
+
                 this.props.history.push(`/`)
             })
             .catch(error => {
@@ -38,15 +40,16 @@ class Login extends Component {
     }
     render() {
         return (
-            <div className="Login">
+            <div className="login">
                 <h1>Login</h1>
                 <form onSubmit={this.submit}>
                     <input type="text" onChange={this.email} placeholder="Email" autoComplete="off" />
                     <input type="password" onChange={this.userPassword} placeholder="Password" autoComplete="off" />
                     <button type="submit">Login</button>
                 </form>
+                
             </div>
-        );
+        )
     }
 }
 

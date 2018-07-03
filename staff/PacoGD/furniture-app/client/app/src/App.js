@@ -12,16 +12,17 @@ class App extends Component {
     token: '',
     username: '',
     password: '',
-    id: ''
+    id: '',
+    cart: 'alcachofas'
   }
 
   render() {
     return (
       <div className="App">
-        
-        <Header/>
-        <Main/>
-        <Footer />
+
+        <Header />
+        <Main />
+        {/* <Footer /> */}
 
       </div>
     );

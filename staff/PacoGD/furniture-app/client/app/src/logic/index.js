@@ -3,9 +3,9 @@ const logic = {
     token: '',
     
 
-    headers() {
-        return { headers: { Authorization: `Bearer ${this.token}` } }
-    }
+    // headers() {
+    //     return { headers: { Authorization: `Bearer ${this.token}` } }
+    // }
 
     
 
