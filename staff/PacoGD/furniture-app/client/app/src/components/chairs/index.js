@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import api from 'api';
 import Xtorage from '../xtorage'
-
-
+import logic from '../../logic'
 
 class Chairs extends Component {
     state = {
@@ -22,13 +21,11 @@ class Chairs extends Component {
 
             })
     }
-    buy = (itemId) => {
-
-        if (Xtorage.local.get('user')) {
-            this.props.history.push(`/cart`)
-
+    buy = itemId => {
+        if ((Xtorage.local.get('user'))) {
+            logic.addProductToCart(itemId)
         } else {
-            window.alert("Please login first");
+            alert("First Login")
             this.props.history.push(`/login`)
         }
     }
@@ -39,21 +36,11 @@ class Chairs extends Component {
                 <div >
                     {this.state.items.map(item => {
                         return (
-                            // <Card >
-                            //     <CardImg top width="100%" src={item.image} alt="Card image cap" />
-                            //     <CardBody>
-                            //         <CardTitle>{item.title}</CardTitle>
-                            //         <CardSubtitle>{item.price}</CardSubtitle>
-                            //         <CardText>{item.description}</CardText>
-                            //         <Button onClick={() => this.buy(item._id)}>Buy</Button>
-                            //     </CardBody>
-                            // </Card>
                             <div className="card float-sm-left" style={{ width: '18rem' }}>
                                 <img className="card-img-top" src={item.image} alt="Card image cap" />
                                 <div className="card-body">
                                     <h5 className="card-title">{item.title}</h5>
                                     <p className="card-text">{item.description}</p>
-                                    {/* <a href="#" className="btn btn-primary">Add cart</a> */}
                                     <Button onClick={() => this.buy(item._id)}>Add cart</Button>
 
                                 </div>

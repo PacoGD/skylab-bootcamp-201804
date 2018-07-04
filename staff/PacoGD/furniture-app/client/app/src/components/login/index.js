@@ -24,12 +24,8 @@ class Login extends Component {
     submit = (e) => {
         e.preventDefault()
         api.authenticateUser(this.state.email, this.state.password)
-
             .then(res => {
-
                 Xtorage.local.set('user', res.data.id)
-                Xtorage.local.set('token', res.data.token)
-
                 this.props.history.push(`/`)
             })
             .catch(error => {
@@ -47,7 +43,7 @@ class Login extends Component {
                     <input type="password" onChange={this.userPassword} placeholder="Password" autoComplete="off" />
                     <button type="submit">Login</button>
                 </form>
-                
+
             </div>
         )
     }

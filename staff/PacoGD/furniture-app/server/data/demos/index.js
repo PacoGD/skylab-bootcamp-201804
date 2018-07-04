@@ -19,7 +19,7 @@ mongoose.connect(DB_URL)
             color: 'Blanco',
             category: 'tables',
             stock: '3',
-            price: '129€'
+            price: 129
         }
         let item2 = {
             title:'Mesa comedor extensible',
@@ -28,7 +28,7 @@ mongoose.connect(DB_URL)
             color: 'Blanco',
             category: 'tables',
             stock: '2',
-            price: '109€'
+            price: 109
         }
         let item3 = {
             title:'Mesa comedor TREND',
@@ -37,7 +37,7 @@ mongoose.connect(DB_URL)
             color: 'Gris',
             category: 'tables',
             stock: '5',
-            price: '209€'
+            price: 209
         }
         let item4 = {
             title:'Mesa comedor BART',
@@ -46,7 +46,7 @@ mongoose.connect(DB_URL)
             color: 'Gris',
             category: 'tables',
             stock: '5',
-            price: '209€'
+            price: 209
         }
         let item5 = {
             title:'Mesa comedor TREND',
@@ -55,7 +55,7 @@ mongoose.connect(DB_URL)
             color: 'Gris',
             category: 'tables',
             stock: '5',
-            price: '209€'
+            price: 215
         }
         let item6 = {
             title:'Silla comedor DORT',
@@ -64,7 +64,7 @@ mongoose.connect(DB_URL)
             color: 'Gris',
             category: 'chairs',
             stock: '5',
-            price: '209€'
+            price: 103
         }
         let item7 = {
             title:'Sofa comedor TREND',
@@ -73,7 +73,7 @@ mongoose.connect(DB_URL)
             color: 'Gris',
             category: 'sofa',
             stock: '5',
-            price: '1300€'
+            price: 1300
         }
         let item8 = {
             title:'Sofa comedor TREND',
@@ -82,9 +82,8 @@ mongoose.connect(DB_URL)
             color: 'Gris',
             category: 'sofa',
             stock: '5',
-            price: '450€'
+            price: 450
         }
-
 
         return Promise.all([
             Item.create(item),

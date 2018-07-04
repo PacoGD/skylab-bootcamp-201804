@@ -4,16 +4,11 @@ import { withRouter } from 'react-router-dom'
 import './index.css'
 import Xtorage from '../xtorage'
 import { Button } from 'reactstrap';
-
+import logic from '../../logic'
 
 class Header extends Component {
     state = {
         collapsed: true
-    }
-    toggleNavbar = () => {
-        this.setState({
-            collapsed: !this.state.collapsed
-        })
     }
     logOutHeader = (
         <header>
@@ -28,6 +23,7 @@ class Header extends Component {
     _handleUnlog = () => {
         Xtorage.local.remove('token')
         Xtorage.local.remove('user')
+        logic.clearProductCart()
         this.props.history.push('/')
     }
     render() {
@@ -36,23 +32,6 @@ class Header extends Component {
                 <header>
                     {(Xtorage.local.get('user')) ? this.logHeader : this.logOutHeader}
                 </header>
-                {/* <Navbar color="faded" light>
-                    <NavbarBrand href="/" className="mr-auto">FurnitureApp</NavbarBrand>
-                    <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                    <Collapse isOpen={!this.state.collapsed} navbar>
-                        <Nav navbar>
-                            <NavItem>
-                                <NavLink href="/tables">Tables</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/chairs">Chairs</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/sofa">Sofa</NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar> */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <a className="navbar-brand" href="/">FurnitureApp</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,10 +39,9 @@ class Header extends Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <a className="nav-item nav-link active" href="/">Home <span className="sr-only">(current)</span></a>
                             <a className="nav-item nav-link" href="/tables">Tables</a>
                             <a className="nav-item nav-link" href="/chairs">Chairs</a>
-                            <a className="nav-item nav-link disabled" href="/sofa">Sofa</a>
+                            <a className="nav-item nav-link" href="/sofa">Sofa</a>
                         </div>
                     </div>
                 </nav>

@@ -3,6 +3,7 @@ import api from 'api';
 import Xtorage from '../xtorage'
 import './index.css'
 import { Button } from 'reactstrap';
+import logic from '../../logic'
 
 class Tables extends Component {
     state = {
@@ -21,11 +22,11 @@ class Tables extends Component {
                 this.props.history.push(`/`)
             })
     }
-    buy = (itemId) => {
-        if (Xtorage.local.get('user')) {
-            this.props.history.push(`/cart`)
+    buy = itemId => {
+        if ((Xtorage.local.get('user'))) {
+            logic.addProductToCart(itemId)
         } else {
-            window.alert("Please login first");
+            alert("First Login")
             this.props.history.push(`/login`)
         }
     }

@@ -77,11 +77,23 @@ router.delete('/users/:userId', [jwtValidator, jsonBodyParser], (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
-router.get('/users/:userId/orders/', jwtValidator, (req, res) => {
-    const { params: { id } } = req
+router.post('/users/:userId/orders',  [jwtValidator, jsonBodyParser], (req, res) => {
+    const {  body: { userId, deliveryAdress, creditCard, price, cart } } = req
+    logic.newOrder(userId, deliveryAdress, creditCard, price, cart)
+        .then(orderId => {
+            res.status(201)
+            res.json({ status: 'OK', data: orderId })
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
+})
+router.get('/users/:userId/orders', [jwtValidator, jsonBodyParser], (req, res) => {
+    const { params: { userId } } = req
 
-    logic.listOrders(id)
-        .then(note => {
+    logic.listOrders(userId)
+        .then(orders => {
             res.json({ status: 'OK', data: orders })
         })
         .catch(({ message }) => {
@@ -89,6 +101,7 @@ router.get('/users/:userId/orders/', jwtValidator, (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
+
 router.get('/:categories', (req, res) => {
     const { params: { categories } } = req
 
@@ -102,7 +115,7 @@ router.get('/:categories', (req, res) => {
             res.json({ status: 'KO', error: message })
         })
 })
-router.get('/users/:userId/orders/', jwtValidator, (req, res) => {
+router.get('/users/:userId/orders', jwtValidator, (req, res) => {
     const { params: { id } } = req
 
     logic.listOrdersItems(id)

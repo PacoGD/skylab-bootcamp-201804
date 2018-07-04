@@ -77,11 +77,11 @@ const logic = {
                 if (typeof id !== 'string') throw Error('user id is not a string')
 
                 if (!(id = id.trim()).length) throw Error('user id is empty or blank')
-                
+
                 if (typeof email !== 'string') throw Error('user email is not a string')
 
                 if (!(email = email.trim()).length) throw Error('user email is empty or blank')
-                
+
                 if (typeof password !== 'string') throw Error('user password is not a string')
 
                 if ((password = password.trim()).length === 0) throw Error('user password is empty or blank')
@@ -132,18 +132,6 @@ const logic = {
             })
             .then(() => true)
     },
-    listOrders(id) {
-        return Promise.resolve()
-            .then(() => {
-                return User.findById(id)
-                    .then(user => {
-                        if (!user) throw Error(`no user found with id ${id}`)
-                        if (!user.orders) throw Error(`no orders yet`)
-
-                        return user.orders
-                    })
-            })
-    },
     showItems(categories) {
         return Promise.resolve()
             .then(() => {
@@ -151,6 +139,28 @@ const logic = {
                     .then((items) => {
                         if (!items) throw Error('invalidad category')
                         return items
+                    })
+            })
+    },
+    newOrder(id, deliveryAdress, creditCard, price, items) {
+        return Promise.resolve()
+            .then(() => {
+                // const _cart = cart.split(",")
+                const order = new Order({ deliveryAdress, creditCard, price, items })
+                
+                return User.findByIdAndUpdate(id, { $push: { orders: order } })
+                    .then(() => order.id)
+            })
+    },
+    listOrders(id) {
+        return Promise.resolve()
+            .then(() => {
+                return User.findById(id)
+                    .then(user => {
+                        if (!user) throw Error(`no user found with id ${id}`)
+                        if (!user.orders) throw Error(`no orders yet`)
+                        
+                        return user.orders
                     })
             })
     },
@@ -194,7 +204,8 @@ const logic = {
                         return user.save()
                     })
             })
-    }
+    },
+
 }
 
 module.exports = logic
@@ -204,21 +215,5 @@ module.exports = logic
 //         .then(() => {
 //             return Item.create({ title, image, description, color, category, stock, price })
 //                 .then(item => item._id)
-//         })
-// },
-// newOrder(id, itemId) {
-//     return Promise.resolve()
-//         .then(() => {
-//             return User.findById(id)
-//                 .then(user => {
-//                     if (!user) throw Error(`no user found with id ${userId}`)
-
-//                     const order = new Order({ item: {} })
-
-//                     user.notes.push(note)
-
-//                     return user.save()
-//                         .then(() => user)
-//                 })
 //         })
 // },

@@ -20,6 +20,6 @@ module.exports = new Schema({
         type: String
     },
     price: {
-        type: String
+        type: Number
     }
 })

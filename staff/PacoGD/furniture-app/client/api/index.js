@@ -5,7 +5,15 @@ const axios = require('axios')
 const furnitureApi = {
     url: 'URL',
 
-    token: '',
+    token(token) {
+        if (token) {
+            this._token = token
+
+            return
+        }
+
+        return this._token
+    },
 
     registerUser(username, name, surname, email, password) {
         return Promise.resolve()
@@ -37,7 +45,7 @@ const furnitureApi = {
 
                         const { data: { id, token } } = data
 
-                        this.token
+                        this.token(token)
 
                         return data
                     })
@@ -99,6 +107,46 @@ const furnitureApi = {
             })
             .then(({ status, data }) => {
                 if (status !== 200) throw Error(`unexpected response status ${status} (${data.status})`)
+
+                return data.data
+            })
+            .catch(err => {
+                if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
+
+                if (err.response) {
+                    const { response: { data: { error: message } } } = err
+
+                    throw Error(message)
+                } else throw err
+            })
+    },
+    listOrders(userId) {
+        return Promise.resolve()
+            .then(() => {
+                return axios.get(`${this.url}/users/${userId}/orders`, { headers: { authorization: `Bearer ${this.token()}` } })
+            })
+            .then(({ status, data }) => {
+                if (status !== 200) throw Error(`unexpected response status ${status} (${data.status})`)
+
+                return data.data
+            })
+            .catch(err => {
+                if (err.code === 'ECONNREFUSED') throw Error('could not reach server')
+
+                if (err.response) {
+                    const { response: { data: { error: message } } } = err
+
+                    throw Error(message)
+                } else throw err
+            })
+    },
+    newOrder(userId, deliveryAdress, creditCard, price, cart) {
+        return Promise.resolve()
+            .then(() => {
+                return axios.post(`${this.url}/users/${userId}/orders`, { userId, deliveryAdress, creditCard, price, cart }, { headers: { authorization: `Bearer ${this.token()}` } })
+            })
+            .then(({ status, data }) => {
+                if (status !== 201) throw Error(`unexpected response status ${status} (${data.status})`)
 
                 return data.data
             })

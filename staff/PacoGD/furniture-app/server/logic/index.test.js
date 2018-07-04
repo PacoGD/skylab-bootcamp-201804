@@ -407,5 +407,27 @@ describe('logic (furniture )', () => {
         })
     })
 
+    false && describe('new order', () => {
+        it('should succeed on correct data', () => {
+            const user1 = new User(user)
+            const order1 = new Order(order)
+            const item1 = new Item(item)
+            const item2 = new Item(itemI)
+
+            user1.orders.push(order1)
+            user1.orders[0].items.push(item1)
+            user1.orders[0].items.push(item2)
+
+            return user1.save()
+                .then(() =>
+                    logic.listItemsFromOrder(user1.id, user1.orders[0].id)
+                        .then(items => {
+                            console.log(items)
+                            expect(items).to.exist
+                        })
+                )
+        })
+    })
+
     after(done => mongoose.connection.db.dropDatabase(() => mongoose.connection.close(done)))
 })

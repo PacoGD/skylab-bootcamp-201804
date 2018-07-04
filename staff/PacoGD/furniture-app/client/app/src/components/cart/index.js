@@ -1,24 +1,56 @@
 import React, { Component } from 'react';
 import Xtorage from '../xtorage'
-import {
-    Card, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
-} from 'reactstrap';
+import api from 'api';
+import { Button } from 'reactstrap';
 
 class Cart extends Component {
     state = {
-
+        deliveryAdress: '',
+        creditCard: '',
+        price: 3000,
     }
     componentDidMount() {
         if (!(Xtorage.local.get('user'))) {
             this.props.history.push(`/login`)
         }
+        api.listOrders(Xtorage.local.get('user'))
+            .then((orders) => {
+                console.log(orders)
+            })
+            .catch(error => {
+                console.error(error)
+                this.props.history.push(`/`)
+
+            })
+    }
+    deliveryAdress = (e) => {
+        const deliveryAdress = e.target.value
+        this.setState({ deliveryAdress })
+    }
+    creditCard = (e) => {
+        const creditCard = e.target.value
+        this.setState({ creditCard })
+    }
+
+    buy = (e) => {
+        e.preventDefault()
+        api.newOrder((Xtorage.local.get('user')), this.state.deliveryAdress, this.state.creditCard, this.state.price, (Xtorage.session.get('cart')))
+        console.log(this.state.creditCard)
+        console.log(this.state.deliveryAdress)
+        console.log((Xtorage.local.get('user')))
+        console.log((Xtorage.session.get('cart')))
     }
     render() {
         return (
             <div>
                 <div className="Mycart">
                     <h1>My Cart</h1>
+                    <form onSubmit={this.buy}>
+                        <label for="username" class="static-value">Price: {this.state.price}€  </label>
+                        <input type="deliveryAdress" onChange={this.deliveryAdress} placeholder="deliveryAdress" autoComplete="off" />
+                        <input type="creditCard" onChange={this.creditCard} placeholder="creditCard" autoComplete="off" />
+                        <button type="submit">Buy</button>
+                    </form>
                     <p>No items yet</p>
                 </div>
 

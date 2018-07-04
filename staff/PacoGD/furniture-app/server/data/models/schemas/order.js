@@ -8,11 +8,11 @@ module.exports = new Schema({
     creditCard: {
         type: Number
     },
-    date: {
-        type: String
+    price:{
+        type: Number
     },
     items: [{
-        type: ObjectId,
+        type: Schema.ObjectId,
         ref: 'Item'
     }]
 })
