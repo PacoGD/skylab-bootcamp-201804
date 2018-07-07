@@ -78,8 +78,8 @@ router.delete('/users/:userId', [jwtValidator, jsonBodyParser], (req, res) => {
         })
 })
 router.post('/users/:userId/orders',  [jwtValidator, jsonBodyParser], (req, res) => {
-    const {  body: { userId, deliveryAdress, creditCard, price, cart } } = req
-    logic.newOrder(userId, deliveryAdress, creditCard, price, cart)
+    const {  body: { userId, deliveryAdress, creditCard, price, items } } = req
+    logic.newOrder(userId, deliveryAdress, creditCard, price, items)
         .then(orderId => {
             res.status(201)
             res.json({ status: 'OK', data: orderId })
@@ -109,6 +109,19 @@ router.get('/:categories', (req, res) => {
         .then(items => {
             res.status(200)
             res.json({ status: 'OK', data: items })
+        })
+        .catch(({ message }) => {
+            res.status(400)
+            res.json({ status: 'KO', error: message })
+        })
+})
+router.get('/users/orders/:itemId', (req, res) => {
+    const { params: { itemId } } = req
+
+    logic.showItem(itemId)
+        .then(item => {
+            res.status(200)
+            res.json({ status: 'OK', data: item })
         })
         .catch(({ message }) => {
             res.status(400)

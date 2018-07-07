@@ -18,11 +18,11 @@ describe('logic (furniture )', () => {
     const itemII = { title: 'Super sofa2', image: 'url', description: 'lorem ipsum', color: 'blue', category: 'mesa', stock: 1, price: 100 }
     const order = {
         deliveryAdress: 'Roc boronat', creditCard: 1234567890,
-        date: "10/06/18"
+        price: 150
     }
     const orderI = {
         deliveryAdress: 'Segarra', creditCard: 9876543210,
-        date: "15/06/18"
+        price: 100
     }
     const categories = 'sofa'
     before(() => mongoose.connect(DB_URL))
@@ -420,9 +420,8 @@ describe('logic (furniture )', () => {
 
             return user1.save()
                 .then(() =>
-                    logic.listItemsFromOrder(user1.id, user1.orders[0].id)
+                    logic.newOrder()
                         .then(items => {
-                            console.log(items)
                             expect(items).to.exist
                         })
                 )

@@ -142,12 +142,34 @@ const logic = {
                     })
             })
     },
+    showItem(itemId) {
+        return Promise.resolve()
+            .then(() => {
+                return Item.findById(itemId)
+                    .then((item) => {
+                        if (!item) throw Error('invalidad item')
+                        return item
+                    })
+            })
+    },
     newOrder(id, deliveryAdress, creditCard, price, items) {
         return Promise.resolve()
             .then(() => {
-                // const _cart = cart.split(",")
+                if (typeof id !== 'string') throw Error('user id is not a string')
+                if (!(id = id.trim()).length) throw Error('user id is empty or blank')
+
+                if (typeof deliveryAdress !== 'string') throw Error('deliveryAdress is not a string')
+                if (!(deliveryAdress = deliveryAdress.trim()).length) throw Error('deliveryAdress is empty or blank')
+
+
+                if (typeof creditCard !== 'string') throw Error('creditCard is not a string')
+                if ((creditCard = creditCard.trim()).length === 0) throw Error('creditCard is empty or blank')
+
+                if (!Array.isArray(items)) throw Error('items is not an array')
+                if (!items.length) throw Error('items is empty or blank')
+
                 const order = new Order({ deliveryAdress, creditCard, price, items })
-                
+
                 return User.findByIdAndUpdate(id, { $push: { orders: order } })
                     .then(() => order.id)
             })
@@ -159,7 +181,7 @@ const logic = {
                     .then(user => {
                         if (!user) throw Error(`no user found with id ${id}`)
                         if (!user.orders) throw Error(`no orders yet`)
-                        
+
                         return user.orders
                     })
             })

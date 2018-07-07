@@ -6,13 +6,13 @@ module.exports = new Schema({
         type: String,
     },
     creditCard: {
-        type: Number
+        type: String
     },
     price:{
         type: Number
     },
     items: [{
-        type: Schema.ObjectId,
+        type: ObjectId,
         ref: 'Item'
     }]
 })

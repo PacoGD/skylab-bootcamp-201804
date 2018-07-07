@@ -1,4 +1,6 @@
 import Xtorage from '../components/xtorage'
+import api from 'api';
+api.url = 'http://localhost:5000/api'
 
 const logic = {
     /**
@@ -19,7 +21,7 @@ const logic = {
     },
 
     addProductToCart(productId) {
-
+        alert('Product added to cart')
         let products = this.cart() || []
         products.push(productId)
         this.cart(products)

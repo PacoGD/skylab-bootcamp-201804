@@ -4,7 +4,6 @@ import api from 'api';
 import Xtorage from '../xtorage'
 import './index.css'
 import App from '../../App';
-api.url = 'http://localhost:5000/api'
 
 class Login extends Component {
     state = {
@@ -29,6 +28,7 @@ class Login extends Component {
                 this.props.history.push(`/`)
             })
             .catch(error => {
+                alert(error)
                 console.error(error)
                 this.props.history.push(`/login`)
             })

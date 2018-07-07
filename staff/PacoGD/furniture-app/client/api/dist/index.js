@@ -136,11 +136,11 @@ var furnitureApi = {
             } else throw err;
         });
     },
-    listOrders: function listOrders(userId) {
+    showItem: function showItem(itemId) {
         var _this6 = this;
 
         return Promise.resolve().then(function () {
-            return axios.get(_this6.url + '/users/' + userId + '/orders', { headers: { authorization: 'Bearer ' + _this6.token() } });
+            return axios.get(_this6.url + '/users/orders/' + itemId);
         }).then(function (_ref6) {
             var status = _ref6.status,
                 data = _ref6.data;
@@ -159,14 +159,37 @@ var furnitureApi = {
             } else throw err;
         });
     },
-    newOrder: function newOrder(userId, deliveryAdress, creditCard, price, cart) {
+    listOrders: function listOrders(userId) {
         var _this7 = this;
 
         return Promise.resolve().then(function () {
-            return axios.post(_this7.url + '/users/' + userId + '/orders', { userId: userId, deliveryAdress: deliveryAdress, creditCard: creditCard, price: price, cart: cart }, { headers: { authorization: 'Bearer ' + _this7.token() } });
+            return axios.get(_this7.url + '/users/' + userId + '/orders', { headers: { authorization: 'Bearer ' + _this7.token() } });
         }).then(function (_ref7) {
             var status = _ref7.status,
                 data = _ref7.data;
+
+            if (status !== 200) throw Error('unexpected response status ' + status + ' (' + data.status + ')');
+
+            return data.data;
+        }).catch(function (err) {
+            if (err.code === 'ECONNREFUSED') throw Error('could not reach server');
+
+            if (err.response) {
+                var message = err.response.data.error;
+
+
+                throw Error(message);
+            } else throw err;
+        });
+    },
+    newOrder: function newOrder(userId, deliveryAdress, creditCard, price, items) {
+        var _this8 = this;
+
+        return Promise.resolve().then(function () {
+            return axios.post(_this8.url + '/users/' + userId + '/orders', { userId: userId, deliveryAdress: deliveryAdress, creditCard: creditCard, price: price, items: items }, { headers: { authorization: 'Bearer ' + _this8.token() } });
+        }).then(function (_ref8) {
+            var status = _ref8.status,
+                data = _ref8.data;
 
             if (status !== 201) throw Error('unexpected response status ' + status + ' (' + data.status + ')');
 
