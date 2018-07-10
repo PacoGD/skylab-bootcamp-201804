@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Xtorage from '../xtorage'
-
+import './index.css'
 
 class Profile extends Component {
     state = {
@@ -12,6 +12,7 @@ class Profile extends Component {
         if (!(Xtorage.local.get('user'))) {
             this.props.history.push(`/login`)
         }
+        
     }
     // unregister = (e) => {
     //     e.preventDefault()
@@ -40,8 +41,8 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <div className="MyOrders">
-                    <h1>My orders</h1>
+                <div className="profile"><br /><br />
+                    <h1>My profile</h1>
                     <p>No orders yet</p>
                 </div>
                 {/* <div className="Unregister">

@@ -1,4 +1,12 @@
-.cart{
+.cart {
     height: 30px;
-    width:30px;
+    width: 30px;
+}
+
+.nav_login {
+    display: flex;
+}
+
+.logout {
+    margin-left: 80%;
 }

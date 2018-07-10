@@ -3,6 +3,7 @@ import { Button } from 'reactstrap';
 import api from 'api';
 import Xtorage from '../xtorage'
 import logic from '../../logic'
+import './index.css'
 
 class Chairs extends Component {
     state = {
@@ -31,7 +32,7 @@ class Chairs extends Component {
     }
     render() {
         return (
-            <div className="Chairs">
+            <div className="chairs">
                 <h1 className="landing-h1">Furniture Chairs </h1>
                 <div >
                     {this.state.items.map(item => {

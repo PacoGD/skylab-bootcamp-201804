@@ -27,6 +27,21 @@ const logic = {
         this.cart(products)
 
     },
+    removeProductFromCart(index) {
+        return Promise.resolve().then(() => {
+            const _cart = [...this.cart()]
+        
+            _cart.splice(index, 1)
+
+            return this.cart(_cart)
+        })
+    },
+
+    // removeProductFromCart(productId) {
+    //     return this.cart(this.cart().filter(id => {
+    //         return id !== productId
+    //     }))
+    // },
 
     clearProductCart() {
         this.cart(null)

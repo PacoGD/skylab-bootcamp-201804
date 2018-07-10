@@ -9,13 +9,13 @@ import Tables from './tables'
 import Chairs from './chairs'
 import Sofa from './sofa'
 import Cart from './cart';
-// import Profile from './profile';
+import Profile from './profile';
 
 function Main(){
 
     
     return (
-    <div className = "Main">
+    <div className = "main">
         <Switch>
             <Route exact path = '/'component={Landing}/>
             <Route path = '/register'component={Register}/>
@@ -25,9 +25,7 @@ function Main(){
             <Route path = '/sofa'component={Sofa}/>
             <Route path = '/items'component={Items}/>
             <Route path = '/cart' component={Cart}/>
-            {/* <Route path = '/profile' component={Profile}/> */}
-
-            
+            <Route path = '/profile' component={Profile}/>
         </Switch>
     </div>
     )

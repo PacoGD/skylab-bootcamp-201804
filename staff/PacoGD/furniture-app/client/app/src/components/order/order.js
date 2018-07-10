@@ -4,7 +4,7 @@ import api from 'api';
 import Xtorage from '../xtorage'
 import './index.css'
 
-class Login extends Component {
+class Order extends Component {
     state = {
         email: '',
         password: '',
@@ -50,4 +50,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login);
+export default withRouter(Order);

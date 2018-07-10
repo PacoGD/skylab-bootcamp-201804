@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import Xtorage from '../xtorage'
 import api from 'api';
 import logic from '../../logic'
+import './index.css'
 
 class Cart extends Component {
     state = {
         deliveryAdress: '',
         creditCard: '',
-        price: 3000,
+        price: 0,
         cart: [],
         orders: [],
         products: []
     }
+
     componentDidMount() {
         if (!(Xtorage.local.get('user'))) {
             this.props.history.push(`/login`)
         }
+
         api.listOrders(Xtorage.local.get('user'))
             .then((orders) => {
                 // this.state.orders = orders
@@ -29,7 +32,9 @@ class Cart extends Component {
                 this.props.history.push(`/`)
 
             })
-        this.retrieveItem()
+        if (Xtorage.session.get('cart')) {
+            this.retrieveItem()
+        }
     }
     deliveryAdress = (e) => {
         const deliveryAdress = e.target.value
@@ -55,8 +60,6 @@ class Cart extends Component {
             })
     }
 
-
-
     retrieveItem() {
         let productsArray = []
 
@@ -73,60 +76,55 @@ class Cart extends Component {
                 return Promise.all(promises)
             })
             .then(() => this.setState({ products: productsArray }))
+            .then(() => this.state.products.map(item => {
+                let price = this.state.price + item.price
+                this.setState({ price })
+            }))
 
     }
 
-
+    removeFromcart(index) {
+        this.setState({ price: 0 })
+        logic.removeProductFromCart(index)
+            .then(() => this.retrieveItem())
+    }
 
     render() {
         return (
             <div>
                 <div className="Mycart">
                     <h1>My Cart</h1>
-                    {(Xtorage.session.get('cart')) ? (<form onSubmit={this.buy}>
-                        <div>
-                            {this.state.products.map(item => { return (<div>Articulo: {item.title}Precio: {item.price}</div>) })}
-                        </div>
-                        {/* <div>{this.state.cart.map(itemId => {
-                            api.showItem(itemId).then(item => {
-                                console.log(item)
-                                return <div > {item.price}
-                                    </div>
-                                
-                            })
-                        })}</div> */}
-                        {/* <div>{this.state.cart.map(itemId => {
-                            let item = api.showItem(itemId)
-                            console.log(item)
-                            return (
-                                <div > {item.price}
-                                </div>
-                            )
-                        })}</div> */}
+                    {(Xtorage.session.get('cart')) ? (<div>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.products.map((item, index) => (
 
-                        <label for="username" class="static-value">Price: {this.state.price}€  </label>
-                        <input type="deliveryAdress" onChange={this.deliveryAdress} placeholder="deliveryAdress" autoComplete="off" />
-                        <input type="creditCard" onChange={this.creditCard} placeholder="creditCard" autoComplete="off" />
-                        <button type="submit">Buy</button>
-                    </form>)
+                                    <tr key={item._id}>
+                                        <td width="10%"><img className="card-img-top cart-image" src={item.image} alt="course or category" /></td>
+                                        <td> <h5 className="card-title">{item.title}</h5></td>
+                                        <td> <h5 className="card-title">{item.price} €</h5></td>
+                                        <td><a className="btn btn-outline-secondary" onClick={() => this.removeFromcart(index)} role="button">Remove from cart</a></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className="pay">
+                            <h4 className="total" scope="col">Total:</h4>
+                            <h4 className="price">{this.state.price} €  </h4>
+                            <button className="btn btn-outline-secondary" type="submit">Pay</button>
+                        </div>
+                    </div>)
                         : <p>No items yet</p>}
                 </div>
 
-                <div className="MyOrders">
-                    <h1>My orders</h1>
-                    <p>No orders yet</p>
-                    <div className="card">
-                        <div className="card-header">
-                            Quote
-                         </div>
-                        <div className="card-body">
-                            <blockquote className="blockquote mb-0">
-                                <p>3000</p>
-                                <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
             </div>
         )
     }

@@ -33,9 +33,9 @@ class Sofa extends Component {
     }
     render() {
         return (
-            <div className="Sofa container">
+            <div className="sofa">
                 <h1 className="landing-h1">Furniture Sofa </h1>
-                <div >
+                <div>
                     {this.state.items.map(item => {
                         return (
                             <div className="card float-sm-left" style={{ width: '18rem' }}>

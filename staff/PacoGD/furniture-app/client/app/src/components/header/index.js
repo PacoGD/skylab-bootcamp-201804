@@ -12,12 +12,12 @@ class Header extends Component {
     }
     logOutHeader = (
         <header>
-            <p>Welcome, guest, you can <Link to="/login">Login</Link> or <Link to="/register">Create an account</Link> </p>
+            <div >Welcome, guest, you can <Link to="/login">Login</Link> or <Link to="/register">Create an account</Link> </div>
         </header>
     )
     logHeader = (
-        <nav>
-            <p> <Button color="link" onClick={() => this._handleUnlog()} >Logout</Button><Link to="/cart"><img className="cart" title="Cart" src="https://minicooperbmw.files.wordpress.com/2011/04/carrito-de-compras.png" /></Link></p>
+        <nav className="nav_login">
+            <div className="logout"> <Button color="link" onClick={() => this._handleUnlog()} >Logout</Button><Button color="link" onClick={() => this.props.history.push('/profile')}>Profile</Button><Link to="/cart"><img className="cart" title="Cart" src="https://minicooperbmw.files.wordpress.com/2011/04/carrito-de-compras.png" /></Link></div>
         </nav>
     )
     _handleUnlog = () => {
