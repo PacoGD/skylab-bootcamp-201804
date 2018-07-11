@@ -17,7 +17,7 @@ class Header extends Component {
     )
     logHeader = (
         <nav className="nav_login">
-            <div className="logout"> <Button color="link" onClick={() => this._handleUnlog()} >Logout</Button><Button color="link" onClick={() => this.props.history.push('/profile')}>Profile</Button><Link to="/cart"><img className="cart" title="Cart" src="https://minicooperbmw.files.wordpress.com/2011/04/carrito-de-compras.png" /></Link></div>
+            <div className="logout"> <Button color="link" onClick={() => this._handleUnlog()} >Logout</Button><Button color="link" onClick={() => this.props.history.push('/profile')}>Profile</Button><Link to="/cart"><img className="cart" alt="cart" title="Cart" src="https://minicooperbmw.files.wordpress.com/2011/04/carrito-de-compras.png" /></Link></div>
         </nav>
     )
     _handleUnlog = () => {

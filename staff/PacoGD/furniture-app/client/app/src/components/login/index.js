@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import api from 'api';
 import Xtorage from '../xtorage'
 import './index.css'
+import swal from 'sweetalert2'
 
 class Login extends Component {
     state = {
@@ -27,7 +28,7 @@ class Login extends Component {
                 this.props.history.push(`/`)
             })
             .catch(error => {
-                alert(error)
+                swal(''+error)
                 console.error(error)
                 this.props.history.push(`/login`)
             })

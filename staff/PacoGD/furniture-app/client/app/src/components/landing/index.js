@@ -72,6 +72,8 @@ class Landing extends React.Component {
     });
     return (
       <div>
+        <h4>HIGH QUALITY PRODUCTS FOR INDOOR & OUTDOOR USE</h4>
+
         <Carousel
           activeIndex={activeIndex}
           next={this.next}
@@ -88,16 +90,16 @@ class Landing extends React.Component {
             <div className="row">
               <div className="col-sm-4">
 
-                <Link to="/tables"><img src="https://i.pinimg.com/736x/cb/4c/53/cb4c53a5bd1d4a3510062bd53789beb9.jpg" className="img-responsive" alt="Image" /></Link>
                 <Link to="/tables">Tables</Link>
+                <Link to="/tables"><img src="https://i.pinimg.com/736x/cb/4c/53/cb4c53a5bd1d4a3510062bd53789beb9.jpg" className="img-responsive" alt="Image" /></Link>
               </div>
               <div className="col-sm-4">
-                <Link to="/chairs"><img src="https://img1.kenayhome.com/25999-large_default/cali-silla-ratan-negro.jpg" className="img-responsive" alt="Image" /></Link>
                 <Link to="/chairs">Chairs</Link>
+                <Link to="/chairs"><img src="https://img1.kenayhome.com/25999-large_default/cali-silla-ratan-negro.jpg" className="img-responsive" alt="Image" /></Link>
               </div>
               <div className="col-sm-4">
-                <Link to="/sofa"><img src="https://img2.kenayhome.com/28139-large_default/ohio-sofa-rincon-tapizado-tela-gris.jpg" className="img-responsive" alt="Image" /></Link>
                 <Link to="/sofa">Sofa</Link>
+                <Link to="/sofa"><img src="https://img2.kenayhome.com/28139-large_default/ohio-sofa-rincon-tapizado-tela-gris.jpg" className="img-responsive" alt="Image" /></Link>
               </div>
 
             </div>

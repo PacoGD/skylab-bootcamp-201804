@@ -6,6 +6,10 @@
     position: absolute;
     right: 0;
     left: 0;
-    top: 80px;
+    top: 90px;
     bottom: 0;
+}
+.order{
+    margin: auto;
+    text-align: center;
 }

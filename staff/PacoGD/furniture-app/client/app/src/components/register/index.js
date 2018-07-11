@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import api from 'api';
 import './index.css'
+import swal from 'sweetalert2'
 
 
 class Register extends Component {
@@ -23,7 +24,7 @@ class Register extends Component {
                 this.props.history.push(`/login`)
             })
             .catch(error => {
-                alert(error)
+                swal(''+error)
                 console.error(error)
                 this.props.history.push(`/register`)
 

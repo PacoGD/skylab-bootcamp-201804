@@ -4,6 +4,7 @@ import Xtorage from '../xtorage'
 import './index.css'
 import { Button } from 'reactstrap';
 import logic from '../../logic'
+import swal from 'sweetalert2'
 
 
 class Sofa extends Component {
@@ -27,7 +28,7 @@ class Sofa extends Component {
         if ((Xtorage.local.get('user'))) {
             logic.addProductToCart(itemId)
         } else {
-            alert("First Login")
+            swal("First Login")
             this.props.history.push(`/login`)
         }
     }

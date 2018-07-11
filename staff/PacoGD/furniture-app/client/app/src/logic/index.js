@@ -1,5 +1,5 @@
-import Xtorage from '../components/xtorage'
 import api from 'api';
+import swal from 'sweetalert2'
 api.url = 'http://localhost:5000/api'
 
 const logic = {
@@ -21,7 +21,12 @@ const logic = {
     },
 
     addProductToCart(productId) {
-        alert('Product added to cart')
+        swal({
+            title: 'Product added to cart',
+            type: 'success',
+            animation: false,
+            customClass: 'animated pulse'
+        })
         let products = this.cart() || []
         products.push(productId)
         this.cart(products)
@@ -36,12 +41,6 @@ const logic = {
             return this.cart(_cart)
         })
     },
-
-    // removeProductFromCart(productId) {
-    //     return this.cart(this.cart().filter(id => {
-    //         return id !== productId
-    //     }))
-    // },
 
     clearProductCart() {
         this.cart(null)

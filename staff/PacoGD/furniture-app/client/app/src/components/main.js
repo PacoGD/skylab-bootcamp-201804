@@ -14,7 +14,6 @@ import Order from './order';
 
 function Main(){
 
-    
     return (
     <div className = "main">
         <Switch>

@@ -18,20 +18,6 @@ class Cart extends Component {
         if (!(Xtorage.local.get('user'))) {
             this.props.history.push(`/login`)
         }
-
-        api.listOrders(Xtorage.local.get('user'))
-            .then((orders) => {
-                // this.state.orders = orders
-                // this.state.orders = orders
-                // console.log(orders)
-                console.log(orders)
-                console.log(this.state.cart)
-            })
-            .catch(error => {
-                console.error(error)
-                this.props.history.push(`/`)
-
-            })
         if (Xtorage.session.get('cart')) {
             this.retrieveItem()
         }
@@ -90,7 +76,6 @@ class Cart extends Component {
     }
     pay(){
         this.props.history.push(`/order`)
-        // console.log('alcachofa')
     }
     render() {
         return (

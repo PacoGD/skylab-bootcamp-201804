@@ -4,6 +4,7 @@ import api from 'api';
 import Xtorage from '../xtorage'
 import logic from '../../logic'
 import './index.css'
+import swal from 'sweetalert2'
 
 class Chairs extends Component {
     state = {
@@ -26,7 +27,7 @@ class Chairs extends Component {
         if ((Xtorage.local.get('user'))) {
             logic.addProductToCart(itemId)
         } else {
-            alert("First Login")
+            swal("First Login")
             this.props.history.push(`/login`)
         }
     }
