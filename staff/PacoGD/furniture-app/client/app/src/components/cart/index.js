@@ -88,7 +88,10 @@ class Cart extends Component {
         logic.removeProductFromCart(index)
             .then(() => this.retrieveItem())
     }
-
+    pay(){
+        this.props.history.push(`/order`)
+        // console.log('alcachofa')
+    }
     render() {
         return (
             <div>
@@ -119,7 +122,7 @@ class Cart extends Component {
                         <div className="pay">
                             <h4 className="total" scope="col">Total:</h4>
                             <h4 className="price">{this.state.price} €  </h4>
-                            <button className="btn btn-outline-secondary" type="submit">Pay</button>
+                            <button className="btn btn-outline-secondary" onClick={()=>this.pay()}>Pay</button>
                         </div>
                     </div>)
                         : <p>No items yet</p>}

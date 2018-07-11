@@ -10,6 +10,7 @@ import Chairs from './chairs'
 import Sofa from './sofa'
 import Cart from './cart';
 import Profile from './profile';
+import Order from './order';
 
 function Main(){
 
@@ -26,6 +27,7 @@ function Main(){
             <Route path = '/items'component={Items}/>
             <Route path = '/cart' component={Cart}/>
             <Route path = '/profile' component={Profile}/>
+            <Route path = '/order' component={Order}/>
         </Switch>
     </div>
     )
