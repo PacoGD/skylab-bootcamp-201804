@@ -39,9 +39,9 @@ class Header extends Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <a className="nav-item nav-link" href="/tables">Tables</a>
-                            <a className="nav-item nav-link" href="/chairs">Chairs</a>
-                            <a className="nav-item nav-link" href="/sofa">Sofa</a>
+                            <Link className="nav-item nav-link" to="/tables">Tables</Link>
+                            <Link className="nav-item nav-link" to="/chairs">Chairs</Link>
+                            <Link className="nav-item nav-link" to="/sofa">Sofa</Link>
                         </div>
                     </div>
                 </nav>

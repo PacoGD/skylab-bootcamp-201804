@@ -62,7 +62,7 @@ class Order extends Component {
                 })
                 swal({
                     title: 'Your order:' + this.state.orderId,
-                    text: 'Will be arrive in 4-7 days',
+                    text: 'Will arrive in 4-7 days',
                     type: 'success',
                     animation: false,
                     customClass: 'animated pulse'

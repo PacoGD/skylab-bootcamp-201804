@@ -1,5 +1,0 @@
-FURNITURE APP 
-
-TARGET
-E-comerce web platform focused on the sale of furniture for inside and outside our homes.
-

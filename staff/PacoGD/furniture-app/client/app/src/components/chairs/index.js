@@ -27,7 +27,7 @@ class Chairs extends Component {
         if ((Xtorage.local.get('user'))) {
             logic.addProductToCart(itemId)
         } else {
-            swal("First Login")
+            swal("Login first")
             this.props.history.push(`/login`)
         }
     }
