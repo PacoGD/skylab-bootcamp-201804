@@ -79,6 +79,7 @@ class Order extends Component {
     render() {
         return (
             <main className="order">
+            <br /><h1>My order</h1><br />
                 <div className="row ml-1 mt-4">
                     <div className="col-xl-9 col-lg-8 col-md-9 col-sm-12 col-xs-12 mb-4 mt-3">
                         <form className="mb-3 mx-auto" onSubmit={this.buy}>

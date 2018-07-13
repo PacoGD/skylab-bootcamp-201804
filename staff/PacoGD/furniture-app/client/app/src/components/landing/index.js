@@ -1,5 +1,4 @@
 import React from 'react';
-// import '../App.css';
 import { withRouter, Link } from 'react-router-dom'
 import './index.css'
 import { CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption, Carousel, NavLink } from 'reactstrap';

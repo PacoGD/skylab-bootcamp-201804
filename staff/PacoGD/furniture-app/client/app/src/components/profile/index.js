@@ -44,7 +44,7 @@ class Profile extends Component {
                 <div className="profile"><br /><br />
                     <h1>My profile</h1>
                     
-                    <img className="underConstruction" src="https://cdn.pixabay.com/photo/2017/06/16/07/27/under-construction-2408066_1280.png" alt="Paris"></img>
+                    <img className="underConstruction" src="https://openclipart.org/download/293025/under-construction-woman_at_work-o-f.svg" alt="Paris"></img>
                 </div>
                 {/* <div className="Unregister">
                     <h1>Unregister</h1>
