@@ -3,11 +3,15 @@
 ### TARGET
 E-comerce web platform focused on the sale of furniture for inside and outside our homes.
 
+### USER CASES
+![](./models-diagram/userCases.png)
+
 ### DATA MODEL
 ![](./models-diagram/datamodel.png)
 
 ### BLOCK MODEL
 ![](./models-diagram/block-model.png)
+
 
 
 ### SCREENSHOTS
