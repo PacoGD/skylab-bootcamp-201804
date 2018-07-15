@@ -2,14 +2,14 @@
 
 require('dotenv').config()
 
-const { mongoose, models: { User, Note } } = require('notes-data')
+const { mongoose, models: { User, Item, Order } } = require('data')
 const { expect } = require('chai')
 const api = require('.')
 const axios = require('axios')
 
 const { env: { DB_URL, API_URL, TOKEN_SECRET } } = process
 
-notesApi.url = API_URL
+api.url = API_URL
 
 describe('logic (notes api)', () => {
     const userData = { name: 'John', surname: 'Doe', email: 'jd@mail.com', password: '123' }

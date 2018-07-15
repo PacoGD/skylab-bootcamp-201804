@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha .",
-    "debug-test": "mocha debug ."
+    "debug-test": "mocha debug .",
+    "coverage-report": "nyc --reporter=html --reporter=text mocha ."
   },
   "keywords": [],
   "author": "",

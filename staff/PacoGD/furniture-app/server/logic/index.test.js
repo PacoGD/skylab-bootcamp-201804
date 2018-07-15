@@ -31,7 +31,7 @@ describe('logic (furniture )', () => {
         return Promise.all([User.remove()])
     })
 
-    false && describe('register user', () => {
+     describe('register user', () => {
         it('should succed on correct data', () => {
             logic.registerUser('John', 'Doe', 'johndoe@mail.com', 'JD', '123')
                 .then(res => expect(res).to.exist)
@@ -133,7 +133,7 @@ describe('logic (furniture )', () => {
         )
     })
 
-    false && describe('authenticate user', () => {
+     describe('authenticate user', () => {
         it('should succeed on correct data', () =>
             User.create(user)
                 .then(() =>
@@ -173,7 +173,7 @@ describe('logic (furniture )', () => {
         )
     })
 
-    false && describe('retrive user', () => {
+     describe('retrive user', () => {
         it('it should succed on correct data', () => {
             return User.create(user)
                 .then((user) => {
@@ -197,7 +197,7 @@ describe('logic (furniture )', () => {
 
     })
     
-    false && describe('udpate password', () => {
+     describe('udpate password', () => {
         it('should succeed on correct data', () =>
             User.create(user)
                 .then(({ id }) => {
@@ -262,7 +262,7 @@ describe('logic (furniture )', () => {
         )
     })
 
-    false && describe('unregister user', () => {
+     describe('unregister user', () => {
         it('should succeed on correct data', () =>
             User.create(user)
                 .then(({ id }) => {
@@ -324,7 +324,7 @@ describe('logic (furniture )', () => {
 
     })
 
-    false && describe('list orders', () => {
+     describe('list orders', () => {
         it('should succeed on correct data', () => {
             const user1 = new User(user)
             const order1 = new Order(order)
@@ -344,7 +344,7 @@ describe('logic (furniture )', () => {
         })
     })
 
-    false && describe('list items', () => {
+     describe('list items', () => {
         it('should succeed on correct data', () => {
             const user1 = new User(user)
             const order1 = new Order(order)
@@ -365,7 +365,7 @@ describe('logic (furniture )', () => {
         })
     })
 
-    false && describe('show items', () => {
+     describe('show items', () => {
         it('should succeed on correct data', () => {
             const user1 = new User(user).save()
             const order1 = new Order(order).save()
@@ -378,14 +378,13 @@ describe('logic (furniture )', () => {
                 .then(() => {
                     logic.showItems(categories)
                         .then((item) => {
-                            console.log(item)
                             expect(item).to.exist
                         })
                 })
         })
     })
 
-    false && describe('list items', () => {
+     describe('list items', () => {
         it('should succeed on correct data', () => {
             const user1 = new User(user)
             const order1 = new Order(order)
@@ -407,7 +406,7 @@ describe('logic (furniture )', () => {
         })
     })
 
-    false && describe('new order', () => {
+     describe('new order', () => {
         it('should succeed on correct data', () => {
             const user1 = new User(user)
             const order1 = new Order(order)

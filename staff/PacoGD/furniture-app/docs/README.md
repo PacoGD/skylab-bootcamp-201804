@@ -1,4 +1,4 @@
-# FURNITURE APP 
+# FURNITURE APP 1.0.0
 
 ### TARGET
 E-comerce web platform focused on the sale of furniture for inside and outside our homes.
@@ -12,7 +12,10 @@ E-comerce web platform focused on the sale of furniture for inside and outside o
 ### BLOCK MODEL
 ![](./models-diagram/block-model.png)
 
+### Technologies
+![](./models-diagram/technologies.png)
 
+Uses html, css3, Javascript, React, Express, Node, Mongoose and Mongo, also uses libraries as axios, jsonwebtoken, expect or chai.
 
 ### SCREENSHOTS
 

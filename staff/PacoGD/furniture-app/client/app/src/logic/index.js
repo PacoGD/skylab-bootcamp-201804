@@ -1,6 +1,7 @@
 import api from 'api';
 import swal from 'sweetalert2'
-api.url = 'http://localhost:5000/api'
+// api.url = 'http://localhost:5000/api'
+api.url = 'https://polar-hollows-35398.herokuapp.com/api'
 
 const logic = {
     /**
